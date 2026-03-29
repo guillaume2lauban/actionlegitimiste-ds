@@ -17,8 +17,8 @@ function toggleMenu() {
     document.body.classList.toggle('no-scroll');
 }
 
-burger.addEventListener('click', toggleMenu);
-menuOverlay.addEventListener('click', toggleMenu);
+if (burger) burger.addEventListener('click', toggleMenu);
+if (menuOverlay) menuOverlay.addEventListener('click', toggleMenu);
 
 // Fermer le menu lors du clic sur un lien
 document.querySelectorAll('.nav-links a').forEach(link => {
@@ -32,12 +32,14 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255,255,255,0.98)';
-        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-    } else {
-        navbar.style.background = 'rgba(255,255,255,0.98)';
-        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    if (navbar) {
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(255,255,255,0.98)';
+            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+        } else {
+            navbar.style.background = 'rgba(255,255,255,0.98)';
+            navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+        }
     }
 });
 
@@ -62,9 +64,7 @@ if (contactForm) {
         try {
             const response = await fetch('/api/contact', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
             const result = await response.json();
@@ -87,7 +87,7 @@ if (contactForm) {
     });
 }
 
-// Animation smooth scroll pour les ancres
+// Smooth scroll pour les ancres
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -97,15 +97,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Effet de fade sur le scroll (personnalisé)
-const fadeElements = document.querySelectorAll('.fade-on-scroll');
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, { threshold: 0.2 });
-fadeElements.forEach(el => observer.observe(el));
