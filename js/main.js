@@ -144,4 +144,38 @@ if (contactForm) {
         }
         setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
     });
+
+    // Animation des compteurs
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter-number');
+    if (!counters.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // ms
+                const step = Math.ceil(target / (duration / 30)); // 30 fps
+                let current = 0;
+                const updateCounter = () => {
+                    current += step;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(interval);
+                    } else {
+                        counter.textContent = current;
+                    }
+                };
+                const interval = setInterval(updateCounter, 30);
+                observer.unobserve(counter); // une seule fois
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+}
+
+// Exécuter après le chargement de la page
+document.addEventListener('DOMContentLoaded', animateCounters);
 }
