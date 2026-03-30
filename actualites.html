@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actualités | Cercle d'Action Légitimiste</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <a href="index.html">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Fleur_de_lis_%28heraldry%29.svg/1200px-Fleur_de_lis_%28heraldry%29.svg.png"
+              alt="Fleur de lys"
+              class="logo-icon"
+            />
+            <span>Cercle d'Action Légitimiste</span>
+          </a>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="mouvement.html">Le mouvement</a>
+          <a href="soutenir.html">Nous soutenir</a>
+          <a href="famille-royale.html">Royauté</a>
+          <a href="actualites.html" class="active">Actualités</a>
+          <a href="soutenir.html#don" class="btn-donate">Faire un don</a>
+        </div>
+        <div class="burger" id="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section
+        class="page-hero"
+        style="
+          background-image:
+            linear-gradient(rgba(30, 67, 140, 0.8), rgba(0, 0, 0, 0.7)),
+            url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Cathédrale_Notre-Dame_de_Chartres_2013.jpg/1280px-Cathédrale_Notre-Dame_de_Chartres_2013.jpg&quot;);
+        "
+      >
+        <div class="page-hero-content" data-aos="fade-up">
+          <h1>Actualités</h1>
+          <p>
+            Retrouvez toutes nos dernières actions, communiqués et événements
+          </p>
+        </div>
+      </section>
+
+      <section class="section news-page">
+        <div class="container">
+          <div id="news-list-full" class="news-grid"></div>
+          <div id="loading" class="loading-spinner" style="display: none">
+            Chargement...
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <!-- Même footer -->
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

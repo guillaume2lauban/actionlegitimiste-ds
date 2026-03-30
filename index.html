@@ -2,11 +2,8 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>Accueil | Cercle d'Action Légitimiste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cercle d'Action Légitimiste</title>
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
@@ -33,11 +30,11 @@
           </a>
         </div>
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="active">Accueil</a>
-          <a href="doctrine.html">Doctrine</a>
-          <a href="actions.html">Actions</a>
-          <a href="soutenir.html">Soutenir</a>
-          <a href="contact.html">Contact</a>
+          <a href="mouvement.html">Le mouvement</a>
+          <a href="soutenir.html">Nous soutenir</a>
+          <a href="famille-royale.html">Royauté</a>
+          <a href="actualites.html">Actualités</a>
+          <a href="soutenir.html#don" class="btn-donate">Faire un don</a>
         </div>
         <div class="burger" id="burger">
           <div class="line1"></div>
@@ -47,194 +44,93 @@
       </div>
     </nav>
 
-    <section
-      class="hero"
-      style="
-        background-image:
-          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
-          url(&quot;https://i.la-croix.com/836x/smart/2025/02/27/1993815-la-cathedrale-notre-dame-de-paris-avec-son-nouvel-.jpg&quot;);
-      "
-    >
-      <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-        <h1 class="hero-title">Cercle d'Action Légitimiste</h1>
-        <p class="hero-subtitle">
-          Pour Dieu et le Roi - Agir pour la France éternelle
-        </p>
-        <div class="hero-buttons">
-          <a href="doctrine.html" class="btn btn-primary"
-            >Découvrir notre doctrine</a
-          >
-          <a href="soutenir.html" class="btn btn-secondary">Nous soutenir</a>
-        </div>
-      </div>
-      <div class="hero-scroll-indicator">
-        <i class="fas fa-chevron-down"></i>
-      </div>
-    </section>
-
-    <section class="section presentation">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Qui sommes-nous ?</h2>
-          <div class="title-decor"></div>
-        </div>
-        <div class="presentation-content">
-          <div class="presentation-text" data-aos="fade-right">
-            <p>
-              Le Cercle d'Action Légitimiste est une association régie par la
-              loi du 1er juillet 1901 et le décret du 16 août 1901. Placé sous
-              le patronage de Saint Mayeul et de Saint Odilon, deux saints
-              emblématiques du Bourbonnais, province où est né le Cercle, notre
-              association a pour vocation de rassembler toutes les bonnes
-              volontés attachées à la légitimité monarchique et à la défense de
-              la France chrétienne.
-            </p>
-            <p>
-              Fondé sur le constat que la République issue de la Révolution de
-              1789 a conduit la France à la décadence morale, spirituelle et
-              politique, le Cercle d'Action Légitimiste œuvre pour le
-              rétablissement de la monarchie traditionnelle, héréditaire,
-              anti-décentralisatrice et représentative, en la personne de Louis
-              XX, duc d'Anjou, chef de la maison de Bourbon et roi légitime des
-              Français.
-            </p>
-            <p>
-              Notre action se déploie sur quatre piliers fondamentaux : la
-              formation intellectuelle et politique, l'action de terrain, la
-              cohésion entre nos membres, et la spiritualité. Ces quatre axes
-              nous permettent d'être présents dans tous les domaines de la vie
-              sociale pour promouvoir les idées légitimistes et préparer le
-              grand soir du retour du Roi.
-            </p>
-          </div>
-          <div class="presentation-image" data-aos="fade-left">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Flag_of_France_%281814%E2%80%931830%29.svg/1280px-Flag_of_France_%281814%E2%80%931830%29.svg.png"
-              alt="Drapeau blanc royal"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section actions-keys">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Nos quatre piliers d'action</h2>
-          <div class="title-decor"></div>
-          <p class="section-subtitle">
-            Former, agir, unir, prier pour la renaissance de la France
+    <main>
+      <section
+        class="hero"
+        style="
+          background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+            url(&quot;https://i.la-croix.com/836x/smart/2025/02/27/1993815-la-cathedrale-notre-dame-de-paris-avec-son-nouvel-.jpg&quot;);
+        "
+      >
+        <div class="hero-content" data-aos="fade-up">
+          <h1 class="hero-title">Cercle d'Action Légitimiste</h1>
+          <p class="hero-subtitle">
+            Pour Dieu et le Roi – Agir pour la France éternelle
           </p>
-        </div>
-        <div class="pillars-grid">
-          <div class="pillar-card" data-aos="fade-up" data-aos-delay="0">
-            <div class="pillar-icon"><i class="fas fa-graduation-cap"></i></div>
-            <h3>Formation</h3>
-            <p>
-              L'ignorance est la mère de tous les maux. Nous organisons des
-              conférences, des séminaires, des cercles de lecture pour former
-              nos membres à l'histoire de France, à la doctrine sociale de
-              l'Église et aux fondements du droit naturel.
-            </p>
-          </div>
-          <div class="pillar-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="pillar-icon"><i class="fas fa-hands-helping"></i></div>
-            <h3>Terrain</h3>
-            <p>
-              Présence dans les manifestations, actions de sensibilisation,
-              distribution de tracts, tenue de stands lors d'événements
-              culturels et religieux. Le terrain est le lieu où nos idées
-              rencontrent le peuple français.
-            </p>
-          </div>
-          <div class="pillar-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="pillar-icon"><i class="fas fa-users"></i></div>
-            <h3>Cohésion</h3>
-            <p>
-              Renforcer les liens entre nos membres par des événements
-              conviviaux, des pèlerinages, des week-ends de formation et des
-              activités sociales. L'union fait la force.
-            </p>
-          </div>
-          <div class="pillar-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="pillar-icon"><i class="fas fa-church"></i></div>
-            <h3>Spiritualité</h3>
-            <p>
-              Participation aux messes, organisation de pèlerinages (Le Puy,
-              Souvigny, Chartres), chapelets publics. La spiritualité est le
-              socle de notre combat.
-            </p>
+          <div class="hero-buttons">
+            <a href="mouvement.html" class="btn btn-primary"
+              >Découvrir le mouvement</a
+            >
+            <a href="soutenir.html" class="btn btn-secondary">Nous soutenir</a>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="hero-scroll-indicator">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </section>
 
-    <section class="section stats">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item" data-aos="zoom-in">
-            <div class="stat-number">2016</div>
-            <div class="stat-label">Année de fondation</div>
-          </div>
-          <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-            <div class="stat-number">12</div>
-            <div class="stat-label">Sections locales</div>
-          </div>
-          <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-            <div class="stat-number">1000+</div>
-            <div class="stat-label">Membres et sympathisants</div>
-          </div>
-          <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Actions menées par an</div>
+      <section class="section call-to-action" data-aos="fade-up">
+        <div class="container">
+          <div class="cta-banner">
+            <h2>Ensemble, restaurons la monarchie</h2>
+            <p>
+              Votre soutien est essentiel. Rejoignez-nous, donnez, agissez. La
+              France a besoin de vous.
+            </p>
+            <a href="soutenir.html" class="btn btn-primary"
+              >Adhérer maintenant</a
+            >
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section news">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Dernières actualités</h2>
-          <div class="title-decor"></div>
-        </div>
-        <div class="news-grid">
-          <div class="news-card" data-aos="fade-up">
-            <div class="news-date">15 Mars 2025</div>
-            <h3>Pèlerinage annuel au Puy-en-Velay</h3>
-            <p>
-              Rendez-vous les 7 et 8 juin 2025 pour notre pèlerinage jubilaire.
-              Inscriptions ouvertes dès maintenant.
-            </p>
-            <a href="#" class="read-more"
-              >Lire la suite <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-          <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="news-date">1 Février 2025</div>
-            <h3>Conférence sur la loi salique</h3>
-            <p>
-              Le Cercle d'Action Légitimiste organise une conférence
-              exceptionnelle sur la loi salique et ses implications dynastiques.
-            </p>
-            <a href="#" class="read-more"
-              >Lire la suite <i class="fas fa-arrow-right"></i
-            ></a>
-          </div>
-          <div class="news-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="news-date">10 Janvier 2025</div>
-            <h3>Voeux de Louis XX aux royalistes</h3>
-            <p>
-              Retrouvez le message du Roi pour l'année 2025 et ses orientations
-              pour la cause légitimiste.
-            </p>
-            <a href="#" class="read-more"
-              >Lire la suite <i class="fas fa-arrow-right"></i
-            ></a>
+      <section class="section highlights">
+        <div class="container">
+          <div class="highlights-grid">
+            <div class="highlight-card" data-aos="fade-up">
+              <i class="fas fa-crown"></i>
+              <h3>Une cause juste</h3>
+              <p>
+                La légitimité monarchique, seule garante de la pérennité de la
+                France.
+              </p>
+            </div>
+            <div class="highlight-card" data-aos="fade-up" data-aos-delay="100">
+              <i class="fas fa-users"></i>
+              <h3>Une action concrète</h3>
+              <p>
+                Formation, terrain, cohésion, spiritualité : quatre piliers pour
+                agir.
+              </p>
+            </div>
+            <div class="highlight-card" data-aos="fade-up" data-aos-delay="200">
+              <i class="fas fa-church"></i>
+              <h3>Une spiritualité vivante</h3>
+              <p>
+                Pèlerinages, messes, chapelets : notre combat est d'abord
+                spirituel.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="section news">
+        <div class="container">
+          <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">Dernières actualités</h2>
+            <div class="title-decor"></div>
+          </div>
+          <div id="news-list" class="news-grid"></div>
+          <div class="text-center" style="text-align: center; margin-top: 2rem">
+            <a href="actualites.html" class="btn btn-primary"
+              >Voir toutes les actualités</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer class="footer">
       <div class="container">
@@ -242,67 +138,72 @@
           <div class="footer-about">
             <h3>Cercle d'Action Légitimiste</h3>
             <p>
-              Association loi 1901 pour le rétablissement de la monarchie
+              Association loi 1901 – Pour le rétablissement de la monarchie
               légitime en France, en la personne de Louis XX.
             </p>
             <div class="social-links">
-              <a
-                href="https://www.facebook.com/ActionLegitimiste"
-                target="_blank"
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
                 ><i class="fab fa-facebook-f"></i
               ></a>
-              <a href="https://twitter.com/ActionLegitim" target="_blank"
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
                 ><i class="fab fa-twitter"></i
               ></a>
-              <a
-                href="https://www.instagram.com/actionlegitimiste/"
-                target="_blank"
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://www.youtube.com/channel/UC..." target="_blank"
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://t.me/ActionLegitimiste" target="_blank"
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
                 ><i class="fab fa-telegram"></i
               ></a>
             </div>
           </div>
-          <div class="footer-links">
-            <h3>Liens utiles</h3>
-            <ul>
-              <li><a href="doctrine.html">Doctrine</a></li>
-              <li><a href="actions.html">Nos actions</a></li>
-              <li><a href="soutenir.html">Adhésion et dons</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li>
-                <a
-                  href="https://boutique.macotisation.fr/collect/Cercle-daction-legitimiste/Autocollants/5bZ2BEbK"
-                  target="_blank"
-                  >Autocollants</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://boutique.macotisation.fr/collect/Cercle-daction-legitimiste/Boutique/5bZ2BEbK"
-                  target="_blank"
-                  >Boutique</a
-                >
-              </li>
-              <li><a href="#" target="_blank">Journal digital</a></li>
-            </ul>
-          </div>
           <div class="footer-contact">
             <h3>Nous contacter</h3>
             <p><i class="fas fa-envelope"></i> legitimiste@protonmail.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> France</p>
-            <p><i class="fas fa-phone"></i> (sur demande)</p>
+            <form id="footer-contact-form">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nom complet"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Adresse email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Sujet"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  name="message"
+                  rows="4"
+                  placeholder="Votre message"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit">
+                Envoyer <i class="fas fa-paper-plane"></i>
+              </button>
+              <div class="form-status"></div>
+            </form>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>
-            &copy; 2025 Cercle d'Action Légitimiste - Tous droits réservés -
-            <a href="#">Mentions légales</a>
-          </p>
+          <p>&copy; 2025 Cercle d'Action Légitimiste – Tous droits réservés</p>
         </div>
       </div>
     </footer>

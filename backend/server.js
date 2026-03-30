@@ -18,26 +18,31 @@ const contactLimiter = rateLimit({
   message: 'Trop de messages envoyés depuis cette adresse IP, veuillez réessayer après 15 minutes.'
 });
 
-// Servir les fichiers statiques depuis la racine (là où se trouvent les HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, '..'))); // ← on monte d'un niveau pour atteindre la racine
+// Servir les fichiers statiques depuis la racine (HTML, CSS, JS, data)
+app.use(express.static(path.join(__dirname, '..')));
 
 app.use('/api/contact', contactLimiter, contactRoutes);
 
-// Route catch-all pour gérer le SPA (ou renvoyer 404)
+// Route catch-all pour les pages HTML
 app.get('*', (req, res) => {
-  // Si l'URL correspond à une page HTML existante, on la sert, sinon 404
-  const requestedPath = req.path;
-  if (requestedPath === '/' || requestedPath === '/index.html') {
+  const filePath = path.join(__dirname, '..', req.path);
+  // Vérifier si le fichier existe (simple check)
+  if (req.path === '/' || req.path === '/index.html') {
     res.sendFile(path.join(__dirname, '../index.html'));
-  } else if (requestedPath === '/doctrine.html') {
+  } else if (req.path === '/doctrine.html') {
     res.sendFile(path.join(__dirname, '../doctrine.html'));
-  } else if (requestedPath === '/soutenir.html') {
-    res.sendFile(path.join(__dirname, '../soutenir.html'));
-  } else if (requestedPath === '/actions.html') {
+  } else if (req.path === '/actions.html') {
     res.sendFile(path.join(__dirname, '../actions.html'));
-  } else if (requestedPath === '/contact.html') {
+  } else if (req.path === '/actualites.html') {
+    res.sendFile(path.join(__dirname, '../actualites.html'));
+  } else if (req.path === '/famille-royale.html') {
+    res.sendFile(path.join(__dirname, '../famille-royale.html'));
+  } else if (req.path === '/soutenir.html') {
+    res.sendFile(path.join(__dirname, '../soutenir.html'));
+  } else if (req.path === '/contact.html') {
     res.sendFile(path.join(__dirname, '../contact.html'));
   } else {
+    // Si le fichier demandé existe, on le sert, sinon 404
     res.status(404).sendFile(path.join(__dirname, '../404.html'));
   }
 });
