@@ -21,20 +21,15 @@
       <div class="nav-container">
         <div class="logo">
           <a href="index.html">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Fleur_de_lis_%28heraldry%29.svg/1200px-Fleur_de_lis_%28heraldry%29.svg.png"
-              alt="Fleur de lys"
-              class="logo-icon"
-            />
-            <span>Cercle d'Action Légitimiste</span>
+            <img src="img/Blanc.png" alt="Fleur de lys" class="logo-icon" />
           </a>
         </div>
         <div class="nav-links" id="navLinks">
-          <a href="mouvement.html">Le mouvement</a>
-          <a href="soutenir.html" class="active">Nous soutenir</a>
-          <a href="famille-royale.html">Royauté</a>
-          <a href="actualites.html">Actualités</a>
-          <a href="soutenir.html#don" class="btn-donate">Faire un don</a>
+          <a href="mouvement.html">LE MOUVEMENT</a>
+          <a href="soutenir.html" class="active">NOUS SOUTENIR</a>
+          <a href="famille-royale.html">FAMILLE ROYALE</a>
+          <a href="actualites.html">ACTUALITÉS</a>
+          <a href="soutenir.html#don" class="btn-donate">FAIRE UN DON</a>
         </div>
         <div class="burger" id="burger">
           <div class="line1"></div>
@@ -49,12 +44,12 @@
         class="page-hero"
         style="
           background-image:
-            linear-gradient(rgba(30, 67, 140, 0.8), rgba(0, 0, 0, 0.7)),
-            url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Donation%2C_communaut%C3%A9_%C3%A0_la_cath%C3%A9drale_Notre-Dame_de_Strasbourg.jpg/1280px-Donation%2C_communaut%C3%A9_%C3%A0_la_cath%C3%A9drale_Notre-Dame_de_Strasbourg.jpg&quot;);
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+            url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Donation%2C_communaut%C3%A9_%C3%A0_la_cath%C3%A9drale_Notre-Dame_de_Strasbourg.jpg/1600px-Donation%2C_communaut%C3%A9_%C3%A0_la_cath%C3%A9drale_Notre-Dame_de_Strasbourg.jpg&quot;);
         "
       >
         <div class="page-hero-content" data-aos="fade-up">
-          <h1>Nous soutenir</h1>
+          <h1>NOUS SOUTENIR</h1>
           <p>Adhésion, dons, boutique et presse en ligne</p>
         </div>
       </section>
@@ -62,7 +57,7 @@
       <section class="section support">
         <div class="container">
           <div class="support-intro" data-aos="fade-up">
-            <h2>Pourquoi adhérer ?</h2>
+            <h2>POURQUOI ADHÉRER ?</h2>
             <p>
               Devenir membre du Cercle d'Action Légitimiste, c'est rejoindre une
               communauté de royalistes actifs. Vous bénéficiez de réductions sur
@@ -74,36 +69,41 @@
             </p>
           </div>
 
-          <div class="support-grid" data-aos="fade-up">
-            <div class="support-card">
-              <h3><i class="fas fa-user-plus"></i> Adhésion</h3>
-              <p>
-                Cotisation annuelle : 30 € (tarif réduit 15 € pour les étudiants
-                et chômeurs).
-              </p>
-              <div class="embed-container">
-                <iframe
-                  src="https://boutique.macotisation.fr/collect/Cercle-daction-legitimiste/Adhesion-au-Cercle-daction-legitimiste/5bZ2BEbK"
-                  frameborder="0"
-                  class="embed-iframe"
-                ></iframe>
-              </div>
+          <!-- Bloc horizontal pour l'adhésion -->
+          <div class="adhesion-block" data-aos="fade-up">
+            <h3><i class="fas fa-user-plus"></i> ADHÉSION</h3>
+            <p>
+              Cotisation annuelle : 30 € (tarif réduit 15 € pour les étudiants
+              et chômeurs).
+            </p>
+            <div class="embed-container">
+              <iframe
+                src="https://boutique.macotisation.fr/collect/Cercle-daction-legitimiste/Adhesion-au-Cercle-daction-legitimiste/5bZ2BEbK"
+                frameborder="0"
+                class="embed-iframe"
+              ></iframe>
             </div>
-            <div class="support-card">
-              <h3><i class="fas fa-store"></i> Boutique Redbubble</h3>
+          </div>
+
+          <!-- Trois petits blocs côte à côte -->
+          <div class="small-blocks-grid" data-aos="fade-up">
+            <div class="small-card">
+              <i class="fas fa-store"></i>
+              <h3>BOUTIQUE REDBUBBLE</h3>
               <p>
                 T-shirts, sweats, mugs, stickers... Affichez fièrement vos
                 couleurs !
               </p>
               <a
-                href="https://www.redbubble.com/fr/people/legitimiste/shop"
+                href="https://www.redbubble.com/people/ActionLegitimiste/shop"
                 target="_blank"
                 class="btn btn-primary"
-                >Visiter la boutique</a
+                >VISITER</a
               >
             </div>
-            <div class="support-card">
-              <h3><i class="fas fa-tag"></i> Autocollants (action locale)</h3>
+            <div class="small-card">
+              <i class="fas fa-tag"></i>
+              <h3>AUTOCOLLANTS</h3>
               <p>
                 Commandez des autocollants pour vos actions de terrain.
                 Disponibles en lot de 50.
@@ -112,21 +112,28 @@
                 href="https://boutique.macotisation.fr/collect/Cercle-daction-legitimiste/Autocollants/5bZ2BEbK"
                 target="_blank"
                 class="btn btn-primary"
-                >Commander</a
+                >COMMANDER</a
               >
             </div>
-            <div class="support-card">
-              <h3><i class="fas fa-newspaper"></i> Vexilla Galliae</h3>
+            <div class="small-card">
+              <i class="fas fa-newspaper"></i>
+              <h3>VEXILLA GALLIAE</h3>
               <p>
                 Le journal digital du Cercle. Abonnez-vous gratuitement pour
                 recevoir chaque trimestre notre revue.
               </p>
-              <a href="#" class="btn btn-primary">S'abonner</a>
+              <a href="#" class="btn btn-primary">S'ABONNER</a>
             </div>
           </div>
 
-          <div id="don" class="donation-block" data-aos="none">
-            <h3>Faire un don</h3>
+          <!-- Bloc horizontal pour le don (avec ancre) -->
+          <div
+            id="don"
+            class="donation-block"
+            data-aos="fade-up"
+            style="scroll-margin-top: 80px"
+          >
+            <h3><i class="fas fa-hand-holding-heart"></i> FAIRE UN DON</h3>
             <p>
               Votre don, même modeste, est essentiel. Il nous permet de financer
               nos actions de terrain, nos formations et notre présence
@@ -146,7 +153,79 @@
     </main>
 
     <footer class="footer">
-      <!-- Même footer -->
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <h3>CERCLE D'ACTION LÉGITIMISTE</h3>
+            <p>
+              Association loi 1901 – Pour le rétablissement de la monarchie
+              légitime en France, en la personne de Louis XX.
+            </p>
+            <div class="social-links">
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+                ><i class="fab fa-telegram"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-contact">
+            <h3>NOUS CONTACTER</h3>
+            <p><i class="fas fa-envelope"></i> legitimiste@protonmail.com</p>
+            <form id="footer-contact-form">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nom complet"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Adresse email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Sujet"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  name="message"
+                  rows="4"
+                  placeholder="Votre message"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit">
+                Envoyer <i class="fas fa-paper-plane"></i>
+              </button>
+              <div class="form-status"></div>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Cercle d'Action Légitimiste – Tous droits réservés</p>
+        </div>
+      </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

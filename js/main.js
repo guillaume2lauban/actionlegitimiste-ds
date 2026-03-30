@@ -1,5 +1,10 @@
-// Initialisation AOS
-AOS.init({ duration: 800, once: true, offset: 100 });
+// Initialisation AOS avec durée et offset réduits
+AOS.init({
+    duration: 600,
+    once: true,
+    offset: 50,
+    easing: 'ease-out'
+});
 
 // Menu burger
 const burger = document.getElementById('burger');
@@ -21,55 +26,29 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Navbar scroll effect (fond et ombre)
+// Gestion de l'affichage du menu uniquement en haut de page
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if (navbar) {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255,255,255,0.98)';
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-        } else {
-            navbar.style.background = 'rgba(255,255,255,0.98)';
-            navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-        }
-    }
-});
-
-// Masquage du menu au scroll (seuil dynamique)
-let lastScroll = 0;
-let ticking = false;
 
 window.addEventListener('scroll', () => {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            const currentScroll = window.pageYOffset;
-            // Ne pas masquer si le menu burger est ouvert
-            if (navLinks && navLinks.classList.contains('nav-active')) return;
-            
-            // Seuil de masquage : 80px ou 5% de la hauteur de la fenêtre
-            const threshold = Math.max(80, window.innerHeight * 0.05);
-            
-            if (currentScroll > lastScroll && currentScroll > threshold) {
-                navbar.classList.add('navbar-hidden');
-            } else if (currentScroll < lastScroll) {
-                navbar.classList.remove('navbar-hidden');
-            }
-            // plus aucune condition sur currentScroll === 0
-            
-            lastScroll = currentScroll;
-            ticking = false;
-        });
-        ticking = true;
+    const currentScroll = window.pageYOffset;
+    
+    // Masquer le menu dès qu'on scroll vers le bas (même légèrement)
+    if (currentScroll > 10) {
+        navbar.classList.add('navbar-hidden');
+    } else {
+        navbar.classList.remove('navbar-hidden');
+    }
+    
+    // Ajouter un fond semi-transparent quand on a scrollé un peu
+    if (currentScroll > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
     }
 });
-
-// Au chargement, on s'assure que le menu est visible (sauf si on arrive via #don)
-/*if (window.location.hash !== '#don') {
-    navbar.classList.remove('navbar-hidden');
-}*/
 
 // Charger actualités
-async function loadNews(containerId, limit = null, full = false) {
+async function loadNews(containerId, limit = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -127,7 +106,7 @@ async function loadArticle() {
 }
 if (window.location.pathname.includes('article.html')) loadArticle();
 
-// Gestion du formulaire de contact dans le footer
+// Formulaire de contact footer
 const contactForm = document.getElementById('footer-contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -166,25 +145,3 @@ if (contactForm) {
         setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
     });
 }
-
-// Défilement fluide vers l'ancre après le chargement complet de la page
-/*if (window.location.hash === '#don') {
-    // On attend que tous les éléments soient prêts (images, polices, AOS)
-    window.addEventListener('load', function() {
-        // Un petit délai pour laisser AOS terminer ses animations
-        setTimeout(function() {
-            const target = document.getElementById('don');
-            if (target) {
-                // Hauteur du menu fixe (à ajuster si besoin)
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = targetPosition - navbarHeight - 20; // marge supplémentaire
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }, 300); // Délai pour laisser AOS et les images se stabiliser
-    });
-}*/
