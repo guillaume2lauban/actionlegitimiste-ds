@@ -1212,3 +1212,7 @@ h1 {
 #article-hero {
     margin-bottom: -30px;
 }
+
+.adhesion-block {
+    display: block !important;
+}

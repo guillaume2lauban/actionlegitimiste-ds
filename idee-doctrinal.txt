@@ -1,4 +1,4 @@
 pour le site du pole doctrinal (doctrine, actu, histoire, philosophie, théologie) avec des ajouts faciles :
 - articles écrits 
 - vidéos youtube ou non-youtube
-- evenements sur pole doctrinal et national
+- evenements sur pole doctrinal et national. repartager les evenements sur le doctrinal ?
