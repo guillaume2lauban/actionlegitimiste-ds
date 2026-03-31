@@ -19,6 +19,15 @@ AOS.init({
     easing: 'ease-out'
 });
 
+setTimeout(() => {
+    const block = document.querySelector('.adhesion-block');
+    if (block) {
+        block.style.display = 'block';
+        block.style.opacity = '1';
+        block.style.transform = 'none';
+    }
+}, 100);
+
 // Menu burger
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
