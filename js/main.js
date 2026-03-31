@@ -1,3 +1,16 @@
+function parseFrenchDate(dateStr) {
+    const months = {
+        'Janvier': 0, 'Février': 1, 'Mars': 2, 'Avril': 3, 'Mai': 4, 'Juin': 5,
+        'Juillet': 6, 'Août': 7, 'Septembre': 8, 'Octobre': 9, 'Novembre': 10, 'Décembre': 11
+    };
+    const parts = dateStr.split(' ');
+    if (parts.length !== 3) return new Date(0); // fallback si le format est inattendu
+    const day = parseInt(parts[0], 10);
+    const month = months[parts[1].toLowerCase()];
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+}
+
 // Initialisation AOS avec durée et offset réduits
 AOS.init({
     duration: 600,
@@ -48,6 +61,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Charger actualités
+/*
 async function loadNews(containerId, limit = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -74,7 +88,39 @@ async function loadNews(containerId, limit = null) {
 }
 
 if (document.getElementById('news-list')) loadNews('news-list', 3);
-if (document.getElementById('news-list-full')) loadNews('news-list-full');
+if (document.getElementById('news-list-full')) loadNews('news-list-full'); */
+
+async function loadHomeNews() {
+    const container = document.getElementById('news-list');
+    if (!container) return;
+    try {
+        const response = await fetch('/data/news.json');
+        const data = await response.json();
+        const articles = data.articles.slice(0, 3);
+        container.innerHTML = articles.map(article => `
+            <div class="news-card" data-id="${article.id}">
+                <img src="${article.image}" alt="${article.title}" class="news-image">
+                <div class="news-date">${article.date}</div>
+                <h3>${article.title}</h3>
+                <p>${article.summary.substring(0, 150)}${article.summary.length > 150 ? '...' : ''}</p>
+            </div>
+        `).join('');
+        // Ajouter le clic sur la carte pour l'accueil aussi
+        document.querySelectorAll('#news-list .news-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const id = card.getAttribute('data-id');
+                sessionStorage.setItem('newsPage', 1); // on suppose page 1 pour l'accueil
+                sessionStorage.setItem('newsScrollY', window.scrollY);
+                window.location.href = `article.html?id=${id}`;
+            });
+        });
+    } catch (error) {
+        console.error('Erreur chargement actualités accueil:', error);
+        container.innerHTML = '<p>Impossible de charger les actualités.</p>';
+    }
+}
+
+if (document.getElementById('news-list')) loadHomeNews();
 
 // Charger un article
 async function loadArticle() {
@@ -83,6 +129,7 @@ async function loadArticle() {
     if (!id) return;
 
     const container = document.getElementById('article-content');
+    const relatedContainer = document.getElementById('related-articles');
     if (!container) return;
 
     try {
@@ -93,12 +140,57 @@ async function loadArticle() {
             container.innerHTML = '<p>Article non trouvé.</p>';
             return;
         }
+
+        // Mise à jour du hero
+        const hero = document.getElementById('article-hero');
+        if (hero) {
+            hero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('${article.image}')`;
+            const heroTitle = hero.querySelector('.page-hero-content h1');
+            if (heroTitle) heroTitle.textContent = article.title;
+        }
+
+        // Contenu de l’article (sans titre ni image)
         container.innerHTML = `
-            <h1>${article.title}</h1>
             <div class="article-meta">${article.date}</div>
-            <img src="${article.image}" alt="${article.title}" class="article-image">
             <div class="article-body">${article.content}</div>
         `;
+
+        // Articles similaires (même catégorie, sauf l’actuel, max 3)
+        // Articles similaires (même catégorie, sauf l’actuel)
+        const sameCategory = data.articles.filter(a => a.category === article.category && a.id != id);
+        // Tri par date décroissante (du plus récent au plus ancien)
+        sameCategory.sort((a, b) => parseFrenchDate(b.date) - parseFrenchDate(a.date));
+        const related = sameCategory.slice(0, 3);
+        if (related.length > 0 && relatedContainer) {
+            relatedContainer.innerHTML = `
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">ARTICLES SIMILAIRES</h2>
+                    <div class="title-decor"></div>
+                </div>
+                <div class="related-grid">
+                    ${related.map(art => `
+                        <div class="related-card" data-id="${art.id}">
+                            <img src="${art.image}" alt="${art.title}" class="related-image">
+                            <div class="related-date">${art.date}</div>
+                            <h3>${art.title}</h3>
+                            <p>${art.summary.substring(0, 100)}${art.summary.length > 100 ? '...' : ''}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            document.querySelectorAll('.related-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.getAttribute('data-id');
+                    // Sauvegarde la page actuelle et la position de scroll (pour le retour)
+                    sessionStorage.setItem('newsPage', currentPage);
+                    sessionStorage.setItem('newsScrollY', window.scrollY);
+                    window.location.href = `article.html?id=${id}`;
+                });
+            });
+        } else if (relatedContainer) {
+            relatedContainer.innerHTML = '';
+        }
+
     } catch (error) {
         console.error('Erreur chargement article:', error);
         container.innerHTML = '<p>Impossible de charger l\'article.</p>';
@@ -178,4 +270,143 @@ function animateCounters() {
 
 // Exécuter après le chargement de la page
 document.addEventListener('DOMContentLoaded', animateCounters);
+}
+
+let allArticles = [];               // stocke tous les articles après fetch
+let currentPage = 1;
+let totalPages = 1;
+
+function getItemsPerPage() {
+    const width = window.innerWidth;
+    if (width >= 992) return 24;        // 3x8
+    if (width >= 768) return 16;        // 2x8
+    return 8;                           // 1x8
+}
+
+async function loadAllArticles() {
+    try {
+        const response = await fetch('/data/news.json');
+        const data = await response.json();
+        allArticles = data.articles;
+    } catch (error) {
+        console.error('Erreur chargement articles:', error);
+        allArticles = [];
+    }
+}
+
+function renderNewsPage(page) {
+    const container = document.getElementById('news-list-full');
+    if (!container) return;
+
+    const itemsPerPage = getItemsPerPage();
+    totalPages = Math.ceil(allArticles.length / itemsPerPage);
+    page = Math.min(Math.max(1, page), totalPages);
+    currentPage = page;
+
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const articlesToShow = allArticles.slice(start, end);
+
+    container.innerHTML = articlesToShow.map(article => `
+        <div class="news-card" data-id="${article.id}" data-aos="fade-up">
+            <img src="${article.image}" alt="${article.title}" class="news-image">
+            <div class="news-date">${article.date}</div>
+            <h3>${article.title}</h3>
+            <p>${article.summary.substring(0, 150)}${article.summary.length > 150 ? '...' : ''}</p>
+        </div>
+    `).join('');
+
+    // Rendre la pagination
+    renderPagination();
+
+    // Ajouter les écouteurs de clic sur chaque carte
+    document.querySelectorAll('.news-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const id = card.getAttribute('data-id');
+            // Sauvegarder la page et la position de scroll
+            sessionStorage.setItem('newsPage', currentPage);
+            sessionStorage.setItem('newsScrollY', window.scrollY);
+            window.location.href = `article.html?id=${id}`;
+        });
+    });
+}
+
+function renderPagination() {
+    const paginationDiv = document.getElementById('pagination');
+    if (!paginationDiv) return;
+
+    if (totalPages <= 1) {
+        paginationDiv.innerHTML = '';
+        return;
+    }
+
+    let html = '<div class="pagination-controls">';
+    for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    }
+    html += '</div>';
+    paginationDiv.innerHTML = html;
+
+    // Écouteurs pour les boutons de page
+    document.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const page = parseInt(btn.getAttribute('data-page'), 10);
+            currentPage = page;
+            renderNewsPage(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+}
+
+async function initNewsPage() {
+    await loadAllArticles();
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('page');
+    const savedPage = sessionStorage.getItem('newsPage');
+    if (pageParam) {
+        currentPage = parseInt(pageParam, 10);
+        sessionStorage.removeItem('newsPage'); // nettoie après usage
+    } else if (savedPage) {
+        currentPage = parseInt(savedPage, 10);
+        sessionStorage.removeItem('newsPage');
+    } else {
+        currentPage = 1;
+    }
+    // Récupérer la position sauvegardée (optionnel)
+    const savedScroll = sessionStorage.getItem('newsScrollY');
+    renderNewsPage(currentPage);
+    if (savedScroll) {
+        setTimeout(() => window.scrollTo(0, parseInt(savedScroll, 10)), 100);
+        sessionStorage.removeItem('newsScrollY');
+    }
+}
+
+// Gérer le redimensionnement : recalculer la pagination et rester sur la même page si possible
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        const oldItems = getItemsPerPage();
+        renderNewsPage(currentPage);
+        // Si le nombre d'articles par page change, on reste sur la même page (ou on ajuste)
+    }, 250);
+});
+
+// Initialiser au chargement
+if (document.getElementById('news-list-full')) {
+    initNewsPage();
+}
+
+// Dans la fonction loadArticle, après le chargement de l'article
+const backButton = document.getElementById('backButton');
+if (backButton) {
+    backButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const savedPage = sessionStorage.getItem('newsPage');
+        if (savedPage) {
+            window.location.href = `actualites.html?page=${savedPage}`;
+        } else {
+            window.location.href = 'actualites.html';
+        }
+    });
 }

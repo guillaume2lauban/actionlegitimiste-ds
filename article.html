@@ -11,7 +11,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
@@ -41,13 +41,15 @@
 
     <main>
       <section
+        id="article-hero"
         class="page-hero"
         style="
           background-image:
             linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
-            url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Cathédrale_Notre-Dame_de_Chartres_2013.jpg/1600px-Cathédrale_Notre-Dame_de_Chartres_2013.jpg&quot;);
+            url(&quot;img/default.jpg&quot;);
         "
       >
+        <!---url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Cathédrale_Notre-Dame_de_Chartres_2013.jpg/1600px-Cathédrale_Notre-Dame_de_Chartres_2013.jpg&quot;) -->
         <div class="page-hero-content" data-aos="fade-up">
           <h1>ARTICLE</h1>
           <!--<p>
@@ -58,33 +60,16 @@
 
       <section class="section article-detail">
         <div class="container">
+          <div class="back-to-news">
+            <a href="actualites.html" class="btn btn-secondary" id="backButton"
+              >← Retour aux actualités</a
+            >
+          </div>
           <div id="article-content" class="article-container"></div>
+          <div id="related-articles" class="related-articles"></div>
         </div>
       </section>
     </main>
-
-    <!--
-    <main>
-      <section class="section article-detail">
-        <div class="container">
-          <div id="article-content" class="article-container"></div>
-          <aside class="donation-sidebar">
-            <div class="donation-box">
-              <h3>FAIRE UN DON</h3>
-              <p>
-                Votre soutien financier est essentiel pour nos actions. Chaque
-                don compte, même le plus petit.
-              </p>
-              <iframe
-                src="https://boutique.macotisation.fr/collect/Cercle-daction-legitimiste/Don-au-cercle-daction-legitimiste/pbmgLKjK"
-                frameborder="0"
-                class="embed-iframe-small"
-              ></iframe>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </main> -->
 
     <footer class="footer">
       <div class="container">
@@ -96,20 +81,34 @@
               légitime en France, en la personne de Louis XX.
             </p>
             <div class="social-links">
-              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+              <a
+                href="https://www.instagram.com/actionlegitimiste"
+                target="_blank"
                 ><i class="fab fa-instagram"></i
               ></a>
-              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+              <a
+                href="https://www.youtube.com/@actionlegitimiste"
+                target="_blank"
                 ><i class="fab fa-youtube"></i
               ></a>
-              <a href="https://linktr.ee/ActionLegitimiste" target="_blank"
+              <a href="https://t.me/actionlegitimiste" target="_blank"
                 ><i class="fab fa-telegram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@actionlegitimiste"
+                target="_blank"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/actionlegitimiste"
+                target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://x.com/ActLegitimiste" target="_blank"
+                ><i class="fa-brands fa-x-twitter"></i
+              ></a>
+              <a href="https://discord.com/invite/f8RVpMDdaK" target="_blank"
+                ><i class="fab fa-discord"></i
               ></a>
             </div>
           </div>
@@ -121,7 +120,7 @@
                 <input
                   type="text"
                   name="name"
-                  placeholder="Nom complet"
+                  placeholder="Nom et prénom"
                   required
                 />
               </div>
@@ -157,7 +156,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2025 Cercle d'Action Légitimiste – Tous droits réservés</p>
+          <p>&copy; 2026 Cercle d'Action Légitimiste – Tous droits réservés</p>
         </div>
       </div>
     </footer>
