@@ -1230,7 +1230,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem 1rem 1rem; /* plus d’espace à gauche (logo) et à droite */
+    padding: 1rem 1rem 1rem 1rem;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -1280,7 +1280,7 @@ h1 {
     .nav-links {
         gap: 1rem;
     }
-    .nav-links a {
+    /*.nav-links a {
         font-size: 0.9rem;
-    }
+    }*/
 }
