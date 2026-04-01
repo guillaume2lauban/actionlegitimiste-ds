@@ -1294,14 +1294,45 @@ h1 {
     padding-right: 1rem;
 }
 
-@media (max-width: 992px) {
+/*@media (max-width: 992px) {
     .donation-block, .adhesion-block, .small-blocks-grid {
         margin-left: -1rem;
         margin-right: -1rem;
     }
-}
+}*/
 
 #achats:hover {
     transform: translateY(0px);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);;
+}
+
+.support-intro {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 24px;
+    box-shadow: var(--ombre);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    margin-top: -2rem;
+}
+
+.support-intro {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #2c3e4f;
+}
+
+.support-intro h2,
+.support-intro h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    /*margin: 2rem 0 1rem;*/
+    color: var(--bleu);
+    /*text-align: center;*/
+}
+
+.support-intro p {
+    margin-bottom: 1rem;
 }
