@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .section {
@@ -1283,4 +1283,25 @@ h1 {
     /*.nav-links a {
         font-size: 0.9rem;
     }*/
+}
+
+.embed-container {
+    padding: 0rem;
+}
+
+.adhesion-block, .donation-block{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (max-width: 992px) {
+    .donation-block, .adhesion-block, .small-blocks-grid {
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+}
+
+#achats:hover {
+    transform: translateY(0px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);;
 }
