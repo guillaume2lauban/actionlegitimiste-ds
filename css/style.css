@@ -1224,3 +1224,63 @@ h1 {
 .adhesion-block:not(#\9) {
     display: block !important;
 }*/
+
+/* ===== MENU ===== */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 1rem; /* plus d’espace à gauche (logo) et à droite */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Point d'arrêt pour le burger : désormais à 992px au lieu de 768px */
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 70px;
+        height: calc(100vh - 70px);
+        background: rgba(0,0,0,0.95);
+        flex-direction: column;
+        width: 70%;
+        padding: 2rem;
+        transition: 0.5s;
+        box-shadow: -5px 0 10px rgba(0,0,0,0.3);
+        z-index: 999;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+    .nav-links a {
+        color: white;
+    }
+    .nav-links.nav-active {
+        right: 0;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--ocre);
+    }
+    .burger {
+        display: block;
+    }
+    .burger.toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .burger.toggle .line2 {
+        opacity: 0;
+    }
+    .burger.toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    .nav-links {
+        gap: 1rem;
+    }
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+}

@@ -1,26 +1,22 @@
+Objet : Demande d’autorisation d’intégration en iframe pour la page d’adhésion (Cercle d’action légitimiste)
+
 Bonjour,
 
-Je suis membre du Cercle d’action légitimiste et je travaille actuellement sur une refonte complète de notre site internet (une nouvelle version, plus moderne). Cette nouvelle ébauche est hébergée temporairement sur actionlegitimiste-ds.vercel.app, et nous passerons prochainement sur un nom de domaine définitif.
+Je suis membre du Cercle d’action légitimiste et je prépare actuellement une nouvelle version de notre site internet (il s’agit d’une refonte complète, en cours de développement). Elle est hébergée temporairement sur actionlegitimiste-ds.vercel.app et sera prochainement transférée vers un nom de domaine définitif.
 
-Nous utilisons votre plateforme pour gérer les adhésions et les dons. Sur notre future page « Nous soutenir », nous souhaitons intégrer la page d’adhésion en iframe pour que les visiteurs puissent adhérer sans quitter notre site. Nous avons déjà testé l’iframe de la page de dons, qui fonctionne parfaitement en ligne – ce qui indique que votre serveur autorise certains embeds.
+Nous utilisons votre plateforme pour gérer les adhésions et les dons. Sur la future page « Nous soutenir », nous souhaitons intégrer la page d’adhésion en iframe, afin que nos adhérents puissent effectuer leur paiement sans quitter notre site.
 
-En revanche, la page d’adhésion est bloquée en ligne (elle s’affiche correctement en local). Cela semble dû à des en‑têtes de sécurité (X-Frame-Options ou CSP) qui diffèrent entre les deux pages.
+J’ai remarqué que la page de dons fonctionne déjà parfaitement en iframe, même en ligne, ce qui indique que votre serveur autorise certains embeds. En revanche, la page d’adhésion est bloquée sur ordinateur (elle s’affiche correctement en local et, curieusement, sur mobile). Cela semble lié à des en‑têtes de sécurité différents entre les deux pages.
 
-Pourriez‑vous autoriser notre domaine à afficher la page d’adhésion en iframe, comme c’est déjà le cas pour la page de dons ?
-La configuration technique recommandée est d’ajouter l’en‑tête :
+Pourriez‑vous, s’il vous plaît, autoriser notre domaine à afficher la page d’adhésion en iframe, de la même manière que la page de dons ?
+La configuration technique appropriée serait d’ajouter l’en‑tête suivant (ou de modifier la politique CSP existante) :
 
 Content-Security-Policy: frame-ancestors https://actionlegitimiste-ds.vercel.app
 
-ou, si vous utilisez encore X-Frame-Options :
+Notre site final sera accessible sur un domaine personnel (nous vous le communiquerons dès qu’il sera définitif). En attendant, avoir l’iframe fonctionnelle pour nos tests nous serait d’une grande aide.
 
-X-Frame-Options: ALLOW-FROM https://actionlegitimiste-ds.vercel.app (moins bien supporté).
-
-Notre site final sera sur un domaine personnel (nous vous communiquerons l’adresse dès qu’elle sera définitive). Pour nos tests et la future mise en ligne, nous avons besoin que actionlegitimiste-ds.vercel.app soit autorisé.
-
-Cette intégration permettra à nos adhérents de vivre un parcours fluide et nous serions très reconnaissants de votre aide.
-
-Merci d’avance.
+Nous vous remercions par avance pour votre aide et restons à votre disposition pour toute information complémentaire.
 
 Bien cordialement,
-Guillaume De Lauban
+Guillaume de Lauban
 guillaumemeunier00@gmail.com
