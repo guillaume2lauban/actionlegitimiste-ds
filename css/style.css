@@ -1575,6 +1575,7 @@ html, body {
         align-items: flex-start;
         overflow-y: auto;
         z-index: 999;
+        padding-top: 7rem;
     }
     .nav-links a {
         color: white;
