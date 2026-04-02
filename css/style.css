@@ -1485,26 +1485,59 @@ h1 {
     transform: translateY(-1px);
     box-shadow: none;
 }
-/*
-#insta-agir {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    gap:0.2rem;
-    color: var(--bleu);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    border-bottom: 1px solid transparent;
+
+#titre-h3-adhesion {
+    color: var(--noir) !important;
 }
-#insta-agir::before {
-    content: "\f16d";
-    font-family: "Font Awesome 6 Brands";
-    font-weight: 400;
-    font-size: 1rem;
+
+#intro-dons {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
 }
-#insta-agir:hover {
-    color: var(--ocre);
-    border-bottom-color: var(--ocre);
-    transform: translateY(-1px);
-}*/
+
+#bon-a-savoir {
+    margin-top: 4rem;
+}
+
+#p-soustitre {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 70px;
+        width: 70%;
+        height: calc(100vh - 70px);
+        background: rgba(0,0,0,0.95);
+        flex-direction: column;
+        padding: 2rem;
+        transition: 0.5s;
+        box-shadow: -5px 0 10px rgba(0,0,0,0.3);
+        z-index: 999;
+        gap: 1.5rem;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+    .nav-links.nav-active {
+        right: 0;
+    }
+    .burger {
+        display: block;
+    }
+    .burger.toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .burger.toggle .line2 {
+        opacity: 0;
+    }
+    .burger.toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    .btn-donate {
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
