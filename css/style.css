@@ -1503,7 +1503,7 @@ h1 {
     padding-left: 2rem;
     padding-right: 2rem;
 }
-
+/*
 @media (max-width: 992px) {
     .nav-links {
         position: fixed;
@@ -1539,5 +1539,48 @@ h1 {
     .btn-donate {
         margin-left: 0;
         margin-top: 0;
+    }
+}*/
+
+/* Correction du débordement horizontal et du menu burger */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+.nav-links {
+    right: -100%;
+    transition: right 0.3s ease;
+}
+
+.nav-links.nav-active {
+    right: 0;
+}
+
+@media (max-width: 992px) {
+    .burger {
+        display: block;
+        margin-left: auto;
+    }
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        width: 80%;
+        height: calc(100vh - 70px);
+        height: 100%;
+        background: rgba(0,0,0,0.95);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        align-items: flex-start;
+        overflow-y: auto;
+        z-index: 999;
+    }
+    .nav-links a {
+        color: white;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--ocre);
     }
 }
