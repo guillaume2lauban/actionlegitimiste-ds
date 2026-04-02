@@ -1236,6 +1236,10 @@ h1 {
     margin: 0 auto;
 }
 
+.nav-links {
+    margin-top: -1rem;
+}
+
 /* Point d'arrêt pour le burger : désormais à 992px au lieu de 768px */
 @media (max-width: 992px) {
     .nav-links {
@@ -1313,7 +1317,7 @@ h1 {
 
 #achats:hover {
     transform: translateY(0px);
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .support-intro {
@@ -1412,3 +1416,95 @@ h1 {
 #strong-agir {
     font-weight: 500;
 }
+
+/* Citation élégante pour Louis XX */
+
+.royal-quote {
+    margin: 2rem auto;
+    max-width: 700px;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: #4a5568;
+    border-top: 1px solid rgba(189, 143, 40, 0.3);
+    border-bottom: 1px solid rgba(189, 143, 40, 0.3);
+    padding: 1rem 0;
+}
+.royal-quote p {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+.royal-quote cite {
+    font-style: normal;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ocre);
+}
+@media (max-width: 768px) {
+    .royal-quote {
+        padding: 0.8rem 0;
+    }
+}
+
+.royal-family {
+    margin-bottom: -3rem;
+}
+
+#bon-a-savoir {
+    margin-top: 2rem;
+    margin-bottom: -3rem;
+}
+
+#don, #adhesion {
+    transition: var(--transition);
+}
+
+#don:hover, #adhesion:hover {
+    transform: translateY(0px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#adhesion {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    gap:0.2rem;
+    color: var(--bleu);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+#adhesion:hover {
+    color: var(--ocre);
+    border-bottom-color: var(--ocre);
+    transform: translateY(-1px);
+    box-shadow: none;
+}
+/*
+#insta-agir {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    gap:0.2rem;
+    color: var(--bleu);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+#insta-agir::before {
+    content: "\f16d";
+    font-family: "Font Awesome 6 Brands";
+    font-weight: 400;
+    font-size: 1rem;
+}
+#insta-agir:hover {
+    color: var(--ocre);
+    border-bottom-color: var(--ocre);
+    transform: translateY(-1px);
+}*/

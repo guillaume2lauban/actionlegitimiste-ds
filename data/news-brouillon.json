@@ -1,0 +1,40 @@
+{
+  "articles": [
+    {
+      "id": 4,
+      "title": "Pèlerinage annuel au Puy-en-Velay",
+      "date": "15 Mars 2025",
+      "image": "/img/pele-puyenvelay.jpg",
+      "summary": "Rendez-vous les 7 et 8 juin 2025 pour notre pèlerinage jubilaire. Inscriptions ouvertes dès maintenant. Programme détaillé à venir.",
+      "content": "<p>Le Cercle d'Action Légitimiste organise son pèlerinage annuel au Puy-en-Velay les 7 et 8 juin 2025.</p><img src='/img/messe-puyenvelay.jpg' alt='Procession au Puy'><p>Cette année, le thème est « La royauté sacrée ». Au programme : messe selon le rite tridentin, conférences, procession et temps fraternels. L'inscription est obligatoire avant le 15 mai. Pour vous inscrire, envoyez un email à legitimiste@protonmail.com avec vos coordonnées. Les frais de participation sont de 20 € par personne (repas inclus). Un hébergement en dortoir est possible sur demande. Nous vous attendons nombreux pour ce moment fort de notre vie associative.</p>",
+      "category": "Agenda"
+    },
+    {
+      "id": 3,
+      "title": "Conférence sur la loi salique",
+      "date": "1 Février 2025",
+      "image": "/img/clovis.jpg",
+      "summary": "Le Cercle d'Action Légitimiste organise une conférence exceptionnelle sur la loi salique et ses implications dynastiques.",
+      "content": "<p>Le samedi 15 avril 2025, à Paris, Maître Jean-Baptiste de Montalembert, avocat et historien, donnera une conférence intitulée « La loi salique, fondement de la monarchie française ». L'entrée est libre dans la limite des places disponibles. L'événement aura lieu à la salle des conférences de la Maison de la Chimie. Une inscription préalable est requise via notre formulaire de contact. La conférence sera suivie d'un cocktail.</p>",
+      "category": "Agenda"
+    },
+    {
+      "id": 2,
+      "title": "Voeux de Louis XX aux royalistes",
+      "date": "10 Janvier 2025",
+      "image": "/img/la-legitimite.jpg",
+      "summary": "Retrouvez le message du Roi pour l'année 2025 et ses orientations pour la cause légitimiste.",
+      "content": "<p>Dans son message de Nouvel An, Louis XX a appelé les royalistes à l'unité et à l'action concrète. « La France ne se relèvera que par le retour à ses principes fondateurs : la monarchie, la foi catholique et la hiérarchie naturelle », a‑t‑il déclaré. Il a également souligné l'importance du travail de terrain et de la formation des jeunes. Le texte intégral du message est disponible sur notre site.</p>",
+      "category": "Monarchie"
+    },
+    {
+      "id": 1,
+      "title": "Parution du nouveau numéro de Vexilla Galliae",
+      "date": "20 Décembre 2024",
+      "image": "/img/logovg.png",
+      "summary": "Le numéro d'hiver de notre journal digital est paru. Au sommaire : un dossier sur la restauration de la messe traditionnelle.",
+      "content": "<p>Vexilla Galliae, le journal du Cercle d'Action Légitimiste, vient de publier son numéro d'hiver. Au sommaire : un entretien avec un historien sur le rôle des Capétiens dans la construction de la France, un reportage sur notre action en région parisienne, et une tribune libre de l'un de nos membres. Le journal est disponible gratuitement en version PDF sur demande. Pour le recevoir, abonnez‑vous à notre newsletter via le formulaire de contact.</p>",
+      "category": "Presse"
+    }
+  ]
+}
