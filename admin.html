@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administration – Cercle d'Action Légitimiste</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+        background: #f5f5f5;
+        padding: 2rem;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #1e438c;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem;
+        color: #bd8f28;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin: 1rem 0 0.3rem;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: inherit;
+      }
+      textarea {
+        min-height: 100px;
+      }
+      button {
+        background: #1e438c;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 40px;
+        cursor: pointer;
+        margin-top: 1rem;
+        font-weight: 600;
+      }
+      button:hover {
+        background: #2a5bbf;
+      }
+      .status {
+        margin-top: 1rem;
+        padding: 0.8rem;
+        border-radius: 8px;
+        display: none;
+      }
+      .success {
+        background: #d4edda;
+        color: #155724;
+        display: block;
+      }
+      .error {
+        background: #f8d7da;
+        color: #721c24;
+        display: block;
+      }
+      hr {
+        margin: 2rem 0;
+      }
+      .note {
+        background: #fef9e6;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        border-left: 4px solid #bd8f28;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📝 Panneau d'administration – Cercle d'Action Légitimiste</h1>
+      <div class="note">
+        ⚠️ Ce formulaire vous permet de modifier tous les textes du site. Une
+        fois les modifications faites, cliquez sur
+        <strong>Télécharger le fichier JSON</strong>, puis remplacez l'ancien
+        fichier <code>data/site-content.json</code> sur votre serveur (via FTP
+        ou l'interface de votre hébergeur). Les modifications apparaîtront
+        immédiatement.
+      </div>
+
+      <form id="adminForm">
+        <!-- Accueil -->
+        <h2>🏠 Page d'accueil</h2>
+        <label>Titre principal :</label
+        ><input type="text" id="accueil_hero_title" />
+        <label>Sous-titre :</label
+        ><input type="text" id="accueil_hero_subtitle" />
+        <label>Titre bannière CTA :</label
+        ><input type="text" id="accueil_cta_title" />
+        <label>Texte bannière CTA :</label
+        ><textarea id="accueil_cta_text"></textarea>
+        <label>Highlight 1 titre :</label
+        ><input type="text" id="accueil_highlight1_title" />
+        <label>Highlight 1 texte :</label
+        ><textarea id="accueil_highlight1_text"></textarea>
+        <label>Highlight 2 titre :</label
+        ><input type="text" id="accueil_highlight2_title" />
+        <label>Highlight 2 texte :</label
+        ><textarea id="accueil_highlight2_text"></textarea>
+        <label>Highlight 3 titre :</label
+        ><input type="text" id="accueil_highlight3_title" />
+        <label>Highlight 3 texte :</label
+        ><textarea id="accueil_highlight3_text"></textarea>
+        <label>Compteur 1 label :</label
+        ><input type="text" id="accueil_counter1_label" />
+        <label>Compteur 1 valeur :</label
+        ><input type="number" id="accueil_counter1_value" />
+        <label>Compteur 2 label :</label
+        ><input type="text" id="accueil_counter2_label" />
+        <label>Compteur 2 valeur :</label
+        ><input type="number" id="accueil_counter2_value" />
+        <label>Compteur 3 label :</label
+        ><input type="text" id="accueil_counter3_label" />
+        <label>Compteur 3 valeur :</label
+        ><input type="number" id="accueil_counter3_value" />
+        <label>Compteur 4 label :</label
+        ><input type="text" id="accueil_counter4_label" />
+        <label>Compteur 4 valeur :</label
+        ><input type="number" id="accueil_counter4_value" />
+
+        <!-- Mouvement -->
+        <h2>📖 Page Le Mouvement</h2>
+        <label>Histoire titre :</label
+        ><input type="text" id="mouvement_histoire_titre" />
+        <label>Histoire texte :</label
+        ><textarea id="mouvement_histoire_texte"></textarea>
+        <label>But titre :</label><input type="text" id="mouvement_but_titre" />
+        <label>But texte :</label><textarea id="mouvement_but_texte"></textarea>
+        <label>Pilier 1 titre :</label
+        ><input type="text" id="mouvement_pilier1_titre" />
+        <label>Pilier 1 texte :</label
+        ><textarea id="mouvement_pilier1_texte"></textarea>
+        <label>Pilier 2 titre :</label
+        ><input type="text" id="mouvement_pilier2_titre" />
+        <label>Pilier 2 texte :</label
+        ><textarea id="mouvement_pilier2_texte"></textarea>
+        <label>Pilier 3 titre :</label
+        ><input type="text" id="mouvement_pilier3_titre" />
+        <label>Pilier 3 texte :</label
+        ><textarea id="mouvement_pilier3_texte"></textarea>
+        <label>Pilier 4 titre :</label
+        ><input type="text" id="mouvement_pilier4_titre" />
+        <label>Pilier 4 texte :</label
+        ><textarea id="mouvement_pilier4_texte"></textarea>
+        <label>Antennes texte principal :</label
+        ><textarea id="mouvement_antennes_texte"></textarea>
+        <label>Antennes commentaire :</label
+        ><textarea id="mouvement_antennes_commentaire"></textarea>
+        <label>Antennes liste villes :</label
+        ><textarea id="mouvement_antennes_liste_villes"></textarea>
+
+        <!-- Soutenir -->
+        <h2>💰 Page Nous soutenir</h2>
+        <label>Intro titre :</label
+        ><input type="text" id="soutenir_intro_titre" />
+        <label>Intro texte :</label
+        ><textarea id="soutenir_intro_texte"></textarea>
+        <label>Boutique titre :</label
+        ><input type="text" id="soutenir_boutique_titre" />
+        <label>Boutique texte :</label
+        ><textarea id="soutenir_boutique_texte"></textarea>
+        <label>Autocollants titre :</label
+        ><input type="text" id="soutenir_autocollants_titre" />
+        <label>Autocollants texte :</label
+        ><textarea id="soutenir_autocollants_texte"></textarea>
+        <label>Journal titre :</label
+        ><input type="text" id="soutenir_journal_titre" />
+        <label>Journal texte :</label
+        ><textarea id="soutenir_journal_texte"></textarea>
+        <label>Don intro titre :</label
+        ><input type="text" id="soutenir_don_intro_titre" />
+        <label>Don intro texte :</label
+        ><textarea id="soutenir_don_intro_texte"></textarea>
+        <label>Don titre :</label><input type="text" id="soutenir_don_titre" />
+        <label>Bon à savoir titre :</label
+        ><input type="text" id="soutenir_bonasavoir_titre" />
+        <label>Bon à savoir paragraphe 1 :</label
+        ><textarea id="soutenir_bonasavoir_paragraphe1"></textarea>
+        <label>Bon à savoir paragraphe 2 :</label
+        ><textarea id="soutenir_bonasavoir_paragraphe2"></textarea>
+        <label>Bon à savoir paragraphe 3 :</label
+        ><textarea id="soutenir_bonasavoir_paragraphe3"></textarea>
+        <label>Bon à savoir paragraphe 4 :</label
+        ><textarea id="soutenir_bonasavoir_paragraphe4"></textarea>
+        <label>Bon à savoir paragraphe 5 :</label
+        ><textarea id="soutenir_bonasavoir_paragraphe5"></textarea>
+
+        <!-- Famille royale (version simplifiée) -->
+        <h2>👑 Page Famille royale</h2>
+        <label>Hero titre :</label
+        ><input type="text" id="famille_royale_hero_title" />
+        <label>Hero sous-titre :</label
+        ><input type="text" id="famille_royale_hero_subtitle" />
+        <label>Bio titre :</label
+        ><input type="text" id="famille_royale_bio_titre" />
+        <label>Bio paragraphe 1 :</label
+        ><textarea id="famille_royale_bio_paragraphe1"></textarea>
+        <label>Bio paragraphe 2 :</label
+        ><textarea id="famille_royale_bio_paragraphe2"></textarea>
+        <label>Bio paragraphe 3 :</label
+        ><textarea id="famille_royale_bio_paragraphe3"></textarea>
+        <label>Citation texte :</label
+        ><textarea id="famille_royale_citation_texte"></textarea>
+        <label>Citation auteur :</label
+        ><input type="text" id="famille_royale_citation_auteur" />
+        <label>Enfants titre :</label
+        ><input type="text" id="famille_royale_enfants_titre" />
+        <label>Enfant 1 nom :</label
+        ><input type="text" id="famille_royale_enfant1_nom" />
+        <label>Enfant 1 description :</label
+        ><textarea id="famille_royale_enfant1_desc"></textarea>
+        <label>Enfant 2 nom :</label
+        ><input type="text" id="famille_royale_enfant2_nom" />
+        <label>Enfant 2 description :</label
+        ><textarea id="famille_royale_enfant2_desc"></textarea>
+        <label>Enfant 3 nom :</label
+        ><input type="text" id="famille_royale_enfant3_nom" />
+        <label>Enfant 3 description :</label
+        ><textarea id="famille_royale_enfant3_desc"></textarea>
+        <label>Enfant 4 nom :</label
+        ><input type="text" id="famille_royale_enfant4_nom" />
+        <label>Enfant 4 description :</label
+        ><textarea id="famille_royale_enfant4_desc"></textarea>
+        <label>Légitimité titre :</label
+        ><input type="text" id="famille_royale_legitimite_titre" />
+        <label>Légitimité paragraphe 1 :</label
+        ><textarea id="famille_royale_legitimite_paragraphe1"></textarea>
+        <label>Légitimité paragraphe 2 :</label
+        ><textarea id="famille_royale_legitimite_paragraphe2"></textarea>
+
+        <!-- Mentions légales (simplifié) -->
+        <h2>⚖️ Mentions légales</h2>
+        <label>Éditeur texte :</label
+        ><textarea id="mentions_legales_editeur_texte"></textarea>
+        <label>Hébergement texte :</label
+        ><textarea id="mentions_legales_hebergement_texte"></textarea>
+        <label>Propriété intellectuelle texte :</label
+        ><textarea id="mentions_legales_propriete_texte"></textarea>
+        <label>Responsabilité texte :</label
+        ><textarea id="mentions_legales_responsabilite_texte"></textarea>
+
+        <!-- Confidentialité (simplifié) -->
+        <h2>🔒 Confidentialité</h2>
+        <label>Collecte texte :</label
+        ><textarea id="confidentialite_collecte_texte"></textarea>
+        <label>Utilisation texte :</label
+        ><textarea id="confidentialite_utilisation_texte"></textarea>
+        <label>Partage texte :</label
+        ><textarea id="confidentialite_partage_texte"></textarea>
+        <label>Durée texte :</label
+        ><textarea id="confidentialite_duree_texte"></textarea>
+        <label>Vos droits texte :</label
+        ><textarea id="confidentialite_droits_texte"></textarea>
+        <label>Sécurité texte :</label
+        ><textarea id="confidentialite_securite_texte"></textarea>
+
+        <!-- CGU -->
+        <h2>📜 CGU</h2>
+        <label>Objet :</label><textarea id="cgu_objet_texte"></textarea>
+        <label>Acceptation :</label
+        ><textarea id="cgu_acceptation_texte"></textarea>
+        <label>Contenu :</label><textarea id="cgu_contenu_texte"></textarea>
+        <label>Propriété intellectuelle :</label
+        ><textarea id="cgu_propriete_texte"></textarea>
+        <label>Liens externes :</label
+        ><textarea id="cgu_liens_texte"></textarea> <label>Modification :</label
+        ><textarea id="cgu_modification_texte"></textarea>
+        <label>Droit applicable :</label
+        ><textarea id="cgu_droit_texte"></textarea>
+
+        <!-- Cookies -->
+        <h2>🍪 Cookies</h2>
+        <label>Définition :</label
+        ><textarea id="cookies_definition_texte"></textarea>
+        <label>Utilisation :</label
+        ><textarea id="cookies_utilisation_texte"></textarea>
+        <label>Consentement :</label
+        ><textarea id="cookies_consentement_texte"></textarea>
+        <label>Gestion :</label><textarea id="cookies_gestion_texte"></textarea>
+
+        <!-- Footer -->
+        <h2>📌 Footer</h2>
+        <label>Description association :</label
+        ><textarea id="footer_association_description"></textarea>
+        <label>Email :</label><input type="email" id="footer_contact_email" />
+
+        <hr />
+        <button type="button" id="downloadBtn">
+          ⬇️ Télécharger le fichier JSON
+        </button>
+        <div id="status" class="status"></div>
+      </form>
+    </div>
+
+    <script>
+      // Charger le fichier JSON existant (si présent)
+      fetch("/data/site-content.json")
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          if (data) {
+            // Remplir tous les champs récursivement
+            function fillFields(obj, prefix = "") {
+              for (let key in obj) {
+                const fieldId = prefix + key;
+                const input = document.getElementById(fieldId);
+                if (input && obj[key] !== undefined) {
+                  input.value = obj[key];
+                } else if (typeof obj[key] === "object") {
+                  fillFields(obj[key], key + "_");
+                }
+              }
+            }
+            fillFields(data);
+          }
+        })
+        .catch((err) =>
+          console.log("Aucun fichier existant, valeurs par défaut."),
+        );
+
+      document.getElementById("downloadBtn").addEventListener("click", () => {
+        // Récupérer toutes les valeurs du formulaire
+        const formData = {};
+        const inputs = document.querySelectorAll(
+          "#adminForm input, #adminForm textarea",
+        );
+        inputs.forEach((input) => {
+          const id = input.id;
+          if (id) {
+            const parts = id.split("_");
+            let current = formData;
+            for (let i = 0; i < parts.length - 1; i++) {
+              const part = parts[i];
+              if (!current[part]) current[part] = {};
+              current = current[part];
+            }
+            const lastKey = parts[parts.length - 1];
+            current[lastKey] = input.value;
+          }
+        });
+        // Convertir les valeurs numériques des compteurs
+        if (formData.accueil) {
+          if (formData.accueil.counter1_value)
+            formData.accueil.counter1_value = parseInt(
+              formData.accueil.counter1_value,
+              10,
+            );
+          if (formData.accueil.counter2_value)
+            formData.accueil.counter2_value = parseInt(
+              formData.accueil.counter2_value,
+              10,
+            );
+          if (formData.accueil.counter3_value)
+            formData.accueil.counter3_value = parseInt(
+              formData.accueil.counter3_value,
+              10,
+            );
+          if (formData.accueil.counter4_value)
+            formData.accueil.counter4_value = parseInt(
+              formData.accueil.counter4_value,
+              10,
+            );
+        }
+        const jsonStr = JSON.stringify(formData, null, 2);
+        const blob = new Blob([jsonStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "site-content.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        const status = document.getElementById("status");
+        status.textContent =
+          "✅ Fichier téléchargé ! Remplacez-le sur le serveur (dossier data/).";
+        status.className = "status success";
+        setTimeout(() => {
+          status.className = "status";
+        }, 5000);
+      });
+    </script>
+  </body>
+</html>
