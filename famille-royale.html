@@ -232,6 +232,12 @@
                 ><i class="fab fa-discord"></i
               ></a>
             </div>
+            <div class="footer-legal">
+              <a href="mentions.html">Mentions légales</a> |
+              <a href="confidentialite.html">Confidentialité</a> |
+              <a href="cgu.html">CGU</a> |
+              <a href="cookies.html">Cookies</a>
+            </div>
           </div>
           <div class="footer-contact">
             <h3>NOUS CONTACTER</h3>
@@ -241,7 +247,7 @@
                 <input
                   type="text"
                   name="name"
-                  placeholder="Nom et prénom"
+                  placeholder="Nom et prénom *"
                   required
                 />
               </div>
@@ -249,7 +255,7 @@
                 <input
                   type="email"
                   name="email"
-                  placeholder="Adresse email"
+                  placeholder="Adresse email *"
                   required
                 />
               </div>
@@ -257,7 +263,7 @@
                 <input
                   type="text"
                   name="subject"
-                  placeholder="Sujet"
+                  placeholder="Sujet *"
                   required
                 />
               </div>
@@ -265,9 +271,21 @@
                 <textarea
                   name="message"
                   rows="4"
-                  placeholder="Votre message"
+                  placeholder="Votre message *"
                   required
                 ></textarea>
+              </div>
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="privacy_consent" required />
+                  J'accepte la
+                  <a href="confidentialite.html" target="_blank"
+                    >politique de confidentialité</a
+                  >
+                </label>
+              </div>
+              <div class="form-group">
+                <p class="required-mention">* Champs obligatoires</p>
               </div>
               <button type="submit" class="btn-submit">
                 Envoyer <i class="fas fa-paper-plane"></i>

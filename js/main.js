@@ -1,104 +1,18 @@
+// ==================== FONCTIONS UTILITAIRES ====================
 function parseFrenchDate(dateStr) {
     const months = {
-        'Janvier': 0, 'Février': 1, 'Mars': 2, 'Avril': 3, 'Mai': 4, 'Juin': 5,
-        'Juillet': 6, 'Août': 7, 'Septembre': 8, 'Octobre': 9, 'Novembre': 10, 'Décembre': 11
+        'janvier': 0, 'février': 1, 'mars': 2, 'avril': 3, 'mai': 4, 'juin': 5,
+        'juillet': 6, 'août': 7, 'septembre': 8, 'octobre': 9, 'novembre': 10, 'décembre': 11
     };
     const parts = dateStr.split(' ');
-    if (parts.length !== 3) return new Date(0); // fallback si le format est inattendu
+    if (parts.length !== 3) return new Date(0);
     const day = parseInt(parts[0], 10);
     const month = months[parts[1].toLowerCase()];
     const year = parseInt(parts[2], 10);
     return new Date(year, month, day);
 }
 
-// Initialisation AOS avec durée et offset réduits
-AOS.init({
-    duration: 600,
-    once: true,
-    offset: 50,
-    easing: 'ease-out'
-});
-
-setTimeout(() => {
-    const block = document.querySelector('.adhesion-block');
-    if (block) {
-        block.style.display = 'block';
-        block.style.opacity = '1';
-        block.style.transform = 'none';
-    }
-}, 100);
-
-// Menu burger
-const burger = document.getElementById('burger');
-const navLinks = document.getElementById('navLinks');
-const menuOverlay = document.getElementById('menuOverlay');
-
-function toggleMenu() {
-    navLinks.classList.toggle('nav-active');
-    burger.classList.toggle('toggle');
-    menuOverlay.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
-}
-if (burger) burger.addEventListener('click', toggleMenu);
-if (menuOverlay) menuOverlay.addEventListener('click', toggleMenu);
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        if (navLinks.classList.contains('nav-active')) toggleMenu();
-    });
-});
-
-// Gestion de l'affichage du menu uniquement en haut de page
-const navbar = document.getElementById('navbar');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    // Masquer le menu dès qu'on scroll vers le bas (même légèrement)
-    if (currentScroll > 10) {
-        navbar.classList.add('navbar-hidden');
-    } else {
-        navbar.classList.remove('navbar-hidden');
-    }
-    
-    // Ajouter un fond semi-transparent quand on a scrollé un peu
-    if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// Charger actualités
-/*
-async function loadNews(containerId, limit = null) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    try {
-        const response = await fetch('/data/news.json');
-        const data = await response.json();
-        let articles = data.articles;
-        if (limit) articles = articles.slice(0, limit);
-
-        container.innerHTML = articles.map(article => `
-            <div class="news-card" data-aos="fade-up">
-                <img src="${article.image}" alt="${article.title}" class="news-image">
-                <div class="news-date">${article.date}</div>
-                <h3>${article.title}</h3>
-                <p>${article.summary.substring(0, 150)}${article.summary.length > 150 ? '...' : ''}</p>
-                <a href="article.html?id=${article.id}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
-            </div>
-        `).join('');
-    } catch (error) {
-        console.error('Erreur chargement actualités:', error);
-        container.innerHTML = '<p>Impossible de charger les actualités.</p>';
-    }
-}
-
-if (document.getElementById('news-list')) loadNews('news-list', 3);
-if (document.getElementById('news-list-full')) loadNews('news-list-full'); */
-
+// ==================== GESTION DES ACTUALITÉS (ACCUEIL) ====================
 async function loadHomeNews() {
     const container = document.getElementById('news-list');
     if (!container) return;
@@ -114,33 +28,125 @@ async function loadHomeNews() {
                 <p>${article.summary.substring(0, 150)}${article.summary.length > 150 ? '...' : ''}</p>
             </div>
         `).join('');
-        // Ajouter le clic sur la carte pour l'accueil aussi
         document.querySelectorAll('#news-list .news-card').forEach(card => {
-            card.addEventListener('click', (e) => {
+            card.addEventListener('click', () => {
                 const id = card.getAttribute('data-id');
-                sessionStorage.setItem('newsPage', 1); // on suppose page 1 pour l'accueil
+                sessionStorage.setItem('newsPage', 1);
                 sessionStorage.setItem('newsScrollY', window.scrollY);
                 window.location.href = `article.html?id=${id}`;
             });
         });
     } catch (error) {
         console.error('Erreur chargement actualités accueil:', error);
-        container.innerHTML = '<p>Impossible de charger les actualités.</p>';
+        if (container) container.innerHTML = '<p>Impossible de charger les actualités.</p>';
     }
 }
 
-if (document.getElementById('news-list')) loadHomeNews();
+// ==================== PAGINATION (PAGE ACTUALITÉS) ====================
+let allArticles = [];
+let currentPage = 1;
+let totalPages = 1;
 
-// Charger un article
+function getItemsPerPage() {
+    const width = window.innerWidth;
+    if (width >= 992) return 24;
+    if (width >= 768) return 16;
+    return 8;
+}
+
+async function loadAllArticles() {
+    try {
+        const response = await fetch('/data/news.json');
+        const data = await response.json();
+        allArticles = data.articles;
+    } catch (error) {
+        console.error('Erreur chargement articles:', error);
+        allArticles = [];
+    }
+}
+
+function renderNewsPage(page) {
+    const container = document.getElementById('news-list-full');
+    if (!container) return;
+    const itemsPerPage = getItemsPerPage();
+    totalPages = Math.ceil(allArticles.length / itemsPerPage);
+    page = Math.min(Math.max(1, page), totalPages);
+    currentPage = page;
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const articlesToShow = allArticles.slice(start, end);
+    container.innerHTML = articlesToShow.map(article => `
+        <div class="news-card" data-id="${article.id}" data-aos="fade-up">
+            <img src="${article.image}" alt="${article.title}" class="news-image">
+            <div class="news-date">${article.date}</div>
+            <h3>${article.title}</h3>
+            <p>${article.summary.substring(0, 150)}${article.summary.length > 150 ? '...' : ''}</p>
+        </div>
+    `).join('');
+    renderPagination();
+    document.querySelectorAll('.news-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.getAttribute('data-id');
+            sessionStorage.setItem('newsPage', currentPage);
+            sessionStorage.setItem('newsScrollY', window.scrollY);
+            window.location.href = `article.html?id=${id}`;
+        });
+    });
+}
+
+function renderPagination() {
+    const paginationDiv = document.getElementById('pagination');
+    if (!paginationDiv) return;
+    if (totalPages <= 1) {
+        paginationDiv.innerHTML = '';
+        return;
+    }
+    let html = '<div class="pagination-controls">';
+    for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    }
+    html += '</div>';
+    paginationDiv.innerHTML = html;
+    document.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const page = parseInt(btn.getAttribute('data-page'), 10);
+            currentPage = page;
+            renderNewsPage(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+}
+
+async function initNewsPage() {
+    await loadAllArticles();
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('page');
+    const savedPage = sessionStorage.getItem('newsPage');
+    if (pageParam) {
+        currentPage = parseInt(pageParam, 10);
+        sessionStorage.removeItem('newsPage');
+    } else if (savedPage) {
+        currentPage = parseInt(savedPage, 10);
+        sessionStorage.removeItem('newsPage');
+    } else {
+        currentPage = 1;
+    }
+    const savedScroll = sessionStorage.getItem('newsScrollY');
+    renderNewsPage(currentPage);
+    if (savedScroll) {
+        setTimeout(() => window.scrollTo(0, parseInt(savedScroll, 10)), 100);
+        sessionStorage.removeItem('newsScrollY');
+    }
+}
+
+// ==================== PAGE ARTICLE ====================
 async function loadArticle() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     if (!id) return;
-
     const container = document.getElementById('article-content');
     const relatedContainer = document.getElementById('related-articles');
     if (!container) return;
-
     try {
         const response = await fetch('/data/news.json');
         const data = await response.json();
@@ -149,25 +155,14 @@ async function loadArticle() {
             container.innerHTML = '<p>Article non trouvé.</p>';
             return;
         }
-
-        // Mise à jour du hero
         const hero = document.getElementById('article-hero');
         if (hero) {
             hero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('${article.image}')`;
             const heroTitle = hero.querySelector('.page-hero-content h1');
             if (heroTitle) heroTitle.textContent = article.title;
         }
-
-        // Contenu de l’article (sans titre ni image)
-        container.innerHTML = `
-            <div class="article-meta">${article.date}</div>
-            <div class="article-body">${article.content}</div>
-        `;
-
-        // Articles similaires (même catégorie, sauf l’actuel, max 3)
-        // Articles similaires (même catégorie, sauf l’actuel)
+        container.innerHTML = `<div class="article-meta">${article.date}</div><div class="article-body">${article.content}</div>`;
         const sameCategory = data.articles.filter(a => a.category === article.category && a.id != id);
-        // Tri par date décroissante (du plus récent au plus ancien)
         sameCategory.sort((a, b) => parseFrenchDate(b.date) - parseFrenchDate(a.date));
         const related = sameCategory.slice(0, 3);
         if (related.length > 0 && relatedContainer) {
@@ -190,7 +185,6 @@ async function loadArticle() {
             document.querySelectorAll('.related-card').forEach(card => {
                 card.addEventListener('click', () => {
                     const id = card.getAttribute('data-id');
-                    // Sauvegarde la page actuelle et la position de scroll (pour le retour)
                     sessionStorage.setItem('newsPage', currentPage);
                     sessionStorage.setItem('newsScrollY', window.scrollY);
                     window.location.href = `article.html?id=${id}`;
@@ -199,19 +193,27 @@ async function loadArticle() {
         } else if (relatedContainer) {
             relatedContainer.innerHTML = '';
         }
-
     } catch (error) {
         console.error('Erreur chargement article:', error);
         container.innerHTML = '<p>Impossible de charger l\'article.</p>';
     }
 }
-if (window.location.pathname.includes('article.html')) loadArticle();
 
-// Formulaire de contact footer
-const contactForm = document.getElementById('footer-contact-form');
-if (contactForm) {
+// ==================== FORMULAIRE DE CONTACT ====================
+function initContactForm() {
+    const contactForm = document.getElementById('footer-contact-form');
+    if (!contactForm) return;
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        const privacyCheckbox = contactForm.querySelector('input[name="privacy_consent"]');
+        if (privacyCheckbox && !privacyCheckbox.checked) {
+            const statusDiv = contactForm.querySelector('.form-status');
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'form-status error';
+            statusDiv.textContent = 'Vous devez accepter la politique de confidentialité.';
+            setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
+            return;
+        }
         const formData = new FormData(contactForm);
         const data = {
             name: formData.get('name'),
@@ -219,11 +221,9 @@ if (contactForm) {
             subject: formData.get('subject'),
             message: formData.get('message')
         };
-
         const statusDiv = contactForm.querySelector('.form-status');
         statusDiv.style.display = 'block';
         statusDiv.textContent = 'Envoi en cours...';
-
         try {
             const response = await fetch('/api/contact', {
                 method: 'POST',
@@ -245,19 +245,19 @@ if (contactForm) {
         }
         setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
     });
+}
 
-    // Animation des compteurs
+// ==================== COMPTEURS ANIMÉS ====================
 function animateCounters() {
     const counters = document.querySelectorAll('.counter-number');
     if (!counters.length) return;
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000; // ms
-                const step = Math.ceil(target / (duration / 30)); // 30 fps
+                const target = parseInt(counter.getAttribute('data-target'), 10);
+                const duration = 2000;
+                const step = Math.ceil(target / (duration / 30));
                 let current = 0;
                 const updateCounter = () => {
                     current += step;
@@ -269,153 +269,284 @@ function animateCounters() {
                     }
                 };
                 const interval = setInterval(updateCounter, 30);
-                observer.unobserve(counter); // une seule fois
+                observer.unobserve(counter);
             }
         });
     }, { threshold: 0.5 });
-
     counters.forEach(counter => observer.observe(counter));
 }
 
-// Exécuter après le chargement de la page
-document.addEventListener('DOMContentLoaded', animateCounters);
-}
-
-let allArticles = [];               // stocke tous les articles après fetch
-let currentPage = 1;
-let totalPages = 1;
-
-function getItemsPerPage() {
-    const width = window.innerWidth;
-    if (width >= 992) return 24;        // 3x8
-    if (width >= 768) return 16;        // 2x8
-    return 8;                           // 1x8
-}
-
-async function loadAllArticles() {
-    try {
-        const response = await fetch('/data/news.json');
-        const data = await response.json();
-        allArticles = data.articles;
-    } catch (error) {
-        console.error('Erreur chargement articles:', error);
-        allArticles = [];
+// ==================== MENU BURGER ====================
+function initMenu() {
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if (!burger || !navLinks) return;
+    function toggleMenu() {
+        navLinks.classList.toggle('nav-active');
+        burger.classList.toggle('toggle');
+        if (menuOverlay) menuOverlay.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
     }
+    burger.addEventListener('click', toggleMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', toggleMenu);
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('nav-active')) toggleMenu();
+        });
+    });
 }
 
-function renderNewsPage(page) {
-    const container = document.getElementById('news-list-full');
-    if (!container) return;
+// ==================== MASQUAGE DU MENU AU SCROLL ====================
+function initScrollMenu() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 10) {
+            navbar.classList.add('navbar-hidden');
+        } else {
+            navbar.classList.remove('navbar-hidden');
+        }
+        if (currentScroll > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        lastScroll = currentScroll;
+    });
+}
 
-    const itemsPerPage = getItemsPerPage();
-    totalPages = Math.ceil(allArticles.length / itemsPerPage);
-    page = Math.min(Math.max(1, page), totalPages);
-    currentPage = page;
+// ==================== BANDEAU COOKIES ====================
+function initCookieBanner() {
+    // Vérifie si l'utilisateur a déjà fait un choix
+    if (localStorage.getItem('cookieConsent')) return;
 
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const articlesToShow = allArticles.slice(start, end);
-
-    container.innerHTML = articlesToShow.map(article => `
-        <div class="news-card" data-id="${article.id}" data-aos="fade-up">
-            <img src="${article.image}" alt="${article.title}" class="news-image">
-            <div class="news-date">${article.date}</div>
-            <h3>${article.title}</h3>
-            <p>${article.summary.substring(0, 150)}${article.summary.length > 150 ? '...' : ''}</p>
+    const banner = document.createElement('div');
+    banner.id = 'cookie-banner';
+    banner.innerHTML = `
+        <div class="cookie-banner-content">
+            <p>🍪 Ce site utilise des cookies techniques nécessaires à son fonctionnement. Aucune donnée personnelle n'est partagée à des fins publicitaires ou analytiques. En acceptant, vous autorisez le dépôt de ces cookies. En refusant, certaines fonctionnalités pourraient être limitées.</p>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn accept">Accepter</button>
+                <button id="cookie-refuse" class="cookie-btn refuse">Refuser</button>
+            </div>
         </div>
-    `).join('');
+    `;
+    document.body.appendChild(banner);
 
-    // Rendre la pagination
-    renderPagination();
+    const acceptBtn = document.getElementById('cookie-accept');
+    const refuseBtn = document.getElementById('cookie-refuse');
 
-    // Ajouter les écouteurs de clic sur chaque carte
-    document.querySelectorAll('.news-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            const id = card.getAttribute('data-id');
-            // Sauvegarder la page et la position de scroll
-            sessionStorage.setItem('newsPage', currentPage);
-            sessionStorage.setItem('newsScrollY', window.scrollY);
-            window.location.href = `article.html?id=${id}`;
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            banner.remove();
         });
-    });
-}
-
-function renderPagination() {
-    const paginationDiv = document.getElementById('pagination');
-    if (!paginationDiv) return;
-
-    if (totalPages <= 1) {
-        paginationDiv.innerHTML = '';
-        return;
     }
-
-    let html = '<div class="pagination-controls">';
-    for (let i = 1; i <= totalPages; i++) {
-        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
-    }
-    html += '</div>';
-    paginationDiv.innerHTML = html;
-
-    // Écouteurs pour les boutons de page
-    document.querySelectorAll('.page-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const page = parseInt(btn.getAttribute('data-page'), 10);
-            currentPage = page;
-            renderNewsPage(page);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (refuseBtn) {
+        refuseBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'refused');
+            banner.remove();
         });
-    });
-}
-
-async function initNewsPage() {
-    await loadAllArticles();
-    const urlParams = new URLSearchParams(window.location.search);
-    const pageParam = urlParams.get('page');
-    const savedPage = sessionStorage.getItem('newsPage');
-    if (pageParam) {
-        currentPage = parseInt(pageParam, 10);
-        sessionStorage.removeItem('newsPage'); // nettoie après usage
-    } else if (savedPage) {
-        currentPage = parseInt(savedPage, 10);
-        sessionStorage.removeItem('newsPage');
-    } else {
-        currentPage = 1;
-    }
-    // Récupérer la position sauvegardée (optionnel)
-    const savedScroll = sessionStorage.getItem('newsScrollY');
-    renderNewsPage(currentPage);
-    if (savedScroll) {
-        setTimeout(() => window.scrollTo(0, parseInt(savedScroll, 10)), 100);
-        sessionStorage.removeItem('newsScrollY');
     }
 }
 
-// Gérer le redimensionnement : recalculer la pagination et rester sur la même page si possible
-let resizeTimer;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        const oldItems = getItemsPerPage();
-        renderNewsPage(currentPage);
-        // Si le nombre d'articles par page change, on reste sur la même page (ou on ajuste)
-    }, 250);
+// ==================== INITIALISATION GLOBALE ====================
+document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({ duration: 600, once: true, offset: 50, easing: 'ease-out' });
+    setTimeout(() => {
+        const block = document.querySelector('.adhesion-block');
+        if (block) {
+            block.style.display = 'block';
+            block.style.opacity = '1';
+            block.style.transform = 'none';
+        }
+    }, 100);
+    initMenu();
+    initScrollMenu();
+    initContactForm();
+    animateCounters();
+    initCookieBanner();
+
+    if (document.getElementById('news-list')) loadHomeNews();
+    if (document.getElementById('news-list-full')) initNewsPage();
+    if (window.location.pathname.includes('article.html')) loadArticle();
+
+    const backButton = document.getElementById('backButton');
+    if (backButton) {
+        backButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const savedPage = sessionStorage.getItem('newsPage');
+            window.location.href = savedPage ? `actualites.html?page=${savedPage}` : 'actualites.html';
+        });
+    }
 });
 
-// Initialiser au chargement
-if (document.getElementById('news-list-full')) {
-    initNewsPage();
+// ==================== CHARGEMENT DU CONTENU CMS ====================
+async function loadCmsContent() {
+    const pages = ['accueil', 'mouvement', 'soutenir', 'famille_royale', 'mentions_legales', 'confidentialite', 'cgu', 'cookies', 'footer'];
+    const content = {};
+    for (const page of pages) {
+        try {
+            const res = await fetch(`/content/${page}.json`);
+            if (res.ok) content[page] = await res.json();
+        } catch(e) { console.warn(`Impossible de charger ${page}.json`); }
+    }
+    if (!content.accueil) return;
+
+    // Application des contenus (même logique que précédemment)
+    applyContent(content);
 }
 
-// Dans la fonction loadArticle, après le chargement de l'article
-const backButton = document.getElementById('backButton');
-if (backButton) {
-    backButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        const savedPage = sessionStorage.getItem('newsPage');
-        if (savedPage) {
-            window.location.href = `actualites.html?page=${savedPage}`;
-        } else {
-            window.location.href = 'actualites.html';
+function applyContent(content) {
+    // Accueil
+    if (document.querySelector('.hero-title')) {
+        setText('.hero-title', content.accueil?.hero_title);
+        setText('.hero-subtitle', content.accueil?.hero_subtitle);
+        setText('.cta-banner h2', content.accueil?.cta_title);
+        setText('.cta-banner p', content.accueil?.cta_text);
+        const highlights = document.querySelectorAll('.highlight-card');
+        if (highlights.length >= 3) {
+            setText(highlights[0].querySelector('h3'), content.accueil?.highlight1_title);
+            setText(highlights[0].querySelector('p'), content.accueil?.highlight1_text);
+            setText(highlights[1].querySelector('h3'), content.accueil?.highlight2_title);
+            setText(highlights[1].querySelector('p'), content.accueil?.highlight2_text);
+            setText(highlights[2].querySelector('h3'), content.accueil?.highlight3_title);
+            setText(highlights[2].querySelector('p'), content.accueil?.highlight3_text);
         }
-    });
+        const counters = document.querySelectorAll('.counter-item');
+        if (counters.length >= 4) {
+            setText(counters[0].querySelector('.counter-label'), content.accueil?.counter1_label);
+            setAttr(counters[0].querySelector('.counter-number'), 'data-target', content.accueil?.counter1_value);
+            setText(counters[1].querySelector('.counter-label'), content.accueil?.counter2_label);
+            setAttr(counters[1].querySelector('.counter-number'), 'data-target', content.accueil?.counter2_value);
+            setText(counters[2].querySelector('.counter-label'), content.accueil?.counter3_label);
+            setAttr(counters[2].querySelector('.counter-number'), 'data-target', content.accueil?.counter3_value);
+            setText(counters[3].querySelector('.counter-label'), content.accueil?.counter4_label);
+            setAttr(counters[3].querySelector('.counter-number'), 'data-target', content.accueil?.counter4_value);
+        }
+    }
+
+    // Mouvement
+    if (document.querySelector('.movement-intro-grid')) {
+        setText('.movement-text h2:first-of-type', content.mouvement?.histoire_titre);
+        setText('.movement-text h2:first-of-type + p', content.mouvement?.histoire_texte);
+        setText('.movement-text h2:nth-of-type(2)', content.mouvement?.but_titre);
+        setText('.movement-text h2:nth-of-type(2) + p', content.mouvement?.but_texte);
+        const pillars = document.querySelectorAll('.pillar-card');
+        if (pillars.length >= 4) {
+            setText(pillars[0].querySelector('h3'), content.mouvement?.pilier1_titre);
+            setText(pillars[0].querySelector('p'), content.mouvement?.pilier1_texte);
+            setText(pillars[1].querySelector('h3'), content.mouvement?.pilier2_titre);
+            setText(pillars[1].querySelector('p'), content.mouvement?.pilier2_texte);
+            setText(pillars[2].querySelector('h3'), content.mouvement?.pilier3_titre);
+            setText(pillars[2].querySelector('p'), content.mouvement?.pilier3_texte);
+            setText(pillars[3].querySelector('h3'), content.mouvement?.pilier4_titre);
+            setText(pillars[3].querySelector('p'), content.mouvement?.pilier4_texte);
+        }
+        const antennesBlock = document.querySelector('.movement-antennes-grid .movement-block');
+        if (antennesBlock) {
+            const paras = antennesBlock.querySelectorAll('p');
+            if (paras.length >= 3) {
+                setText(paras[0], content.mouvement?.antennes_texte);
+                if (content.mouvement?.antennes_commentaire) paras[1].innerHTML = content.mouvement.antennes_commentaire;
+                setText(paras[2], content.mouvement?.antennes_liste_villes);
+            }
+        }
+    }
+
+    // Soutenir
+    if (document.querySelector('.support-intro')) {
+        setText('.support-intro h2', content.soutenir?.intro_titre);
+        setText('.support-intro p', content.soutenir?.intro_texte);
+        const smallCards = document.querySelectorAll('.small-card');
+        if (smallCards.length >= 3) {
+            setText(smallCards[0].querySelector('h3'), content.soutenir?.boutique_titre);
+            setText(smallCards[0].querySelector('p'), content.soutenir?.boutique_texte);
+            setText(smallCards[1].querySelector('h3'), content.soutenir?.autocollants_titre);
+            setText(smallCards[1].querySelector('p'), content.soutenir?.autocollants_texte);
+            setText(smallCards[2].querySelector('h3'), content.soutenir?.journal_titre);
+            setText(smallCards[2].querySelector('p'), content.soutenir?.journal_texte);
+        }
+        const introDons = document.getElementById('intro-dons');
+        if (introDons) {
+            setText(introDons.querySelector('h2'), content.soutenir?.don_intro_titre);
+            setText(introDons.querySelector('p'), content.soutenir?.don_intro_texte);
+        }
+        setText('.donation-block h3', content.soutenir?.don_titre);
+        const bonAsavoir = document.getElementById('bon-a-savoir');
+        if (bonAsavoir) {
+            setText(bonAsavoir.querySelector('h2'), content.soutenir?.bonasavoir_titre);
+            const paras = bonAsavoir.querySelectorAll('p');
+            if (paras.length >= 5) {
+                setText(paras[0], content.soutenir?.bonasavoir_paragraphe1);
+                setText(paras[1], content.soutenir?.bonasavoir_paragraphe2);
+                setText(paras[2], content.soutenir?.bonasavoir_paragraphe3);
+                setText(paras[3], content.soutenir?.bonasavoir_paragraphe4);
+                setText(paras[4], content.soutenir?.bonasavoir_paragraphe5);
+            }
+        }
+    }
+
+    // Famille royale
+    if (document.querySelector('.royal-intro')) {
+        setText('.page-hero-content h1', content.famille_royale?.hero_title);
+        setText('.page-hero-content p', content.famille_royale?.hero_subtitle);
+        setText('.royal-bio h2', content.famille_royale?.bio_titre);
+        const bioParas = document.querySelectorAll('.royal-bio p');
+        if (bioParas.length >= 3) {
+            setText(bioParas[0], content.famille_royale?.bio_paragraphe1);
+            setText(bioParas[1], content.famille_royale?.bio_paragraphe2);
+            setText(bioParas[2], content.famille_royale?.bio_paragraphe3);
+        }
+        const quote = document.querySelector('.royal-quote');
+        if (quote) {
+            setText(quote.querySelector('p'), content.famille_royale?.citation_texte);
+            setText(quote.querySelector('cite'), content.famille_royale?.citation_auteur);
+        }
+        setText('.royal-children h3', content.famille_royale?.enfants_titre);
+        const childCards = document.querySelectorAll('.child-card');
+        if (childCards.length >= 4) {
+            setText(childCards[0].querySelector('h4'), content.famille_royale?.enfant1_nom);
+            setText(childCards[0].querySelector('p'), content.famille_royale?.enfant1_desc);
+            setText(childCards[1].querySelector('h4'), content.famille_royale?.enfant2_nom);
+            setText(childCards[1].querySelector('p'), content.famille_royale?.enfant2_desc);
+            setText(childCards[2].querySelector('h4'), content.famille_royale?.enfant3_nom);
+            setText(childCards[2].querySelector('p'), content.famille_royale?.enfant3_desc);
+            setText(childCards[3].querySelector('h4'), content.famille_royale?.enfant4_nom);
+            setText(childCards[3].querySelector('p'), content.famille_royale?.enfant4_desc);
+        }
+        const claim = document.querySelector('.royal-claim');
+        if (claim) {
+            setText(claim.querySelector('h3'), content.famille_royale?.legitimite_titre);
+            const claimParas = claim.querySelectorAll('p');
+            if (claimParas.length >= 2) {
+                setText(claimParas[0], content.famille_royale?.legitimite_paragraphe1);
+                setText(claimParas[1], content.famille_royale?.legitimite_paragraphe2);
+            }
+        }
+    }
+
+    // Footer
+    if (document.querySelector('.footer-about p')) {
+        setText('.footer-about p', content.footer?.association_description);
+        const emailP = document.querySelector('.footer-contact p:first-of-type');
+        if (emailP) emailP.innerHTML = `<i class="fas fa-envelope"></i> ${content.footer?.contact_email}`;
+    }
 }
+
+function setText(selector, text) {
+    if (!text) return;
+    const el = typeof selector === 'string' ? document.querySelector(selector) : selector;
+    if (el && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') el.textContent = text;
+}
+
+function setAttr(selector, attr, value) {
+    if (!value) return;
+    const el = typeof selector === 'string' ? document.querySelector(selector) : selector;
+    if (el) el.setAttribute(attr, value);
+}
+
+document.addEventListener('DOMContentLoaded', loadCmsContent);
