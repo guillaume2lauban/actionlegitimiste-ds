@@ -92,22 +92,43 @@
         font-size: 0.9rem;
         border-left: 4px solid #bd8f28;
       }
+      .login-box {
+        text-align: center;
+        max-width: 400px;
+        margin: 5rem auto;
+      }
+      .login-box input {
+        margin-bottom: 1rem;
+      }
+      #adminForm {
+        display: none;
+      }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container login-box" id="loginBox">
+      <h1>🔐 Accès restreint</h1>
+      <p>Veuillez saisir le mot de passe pour accéder à l'administration.</p>
+      <input type="password" id="passwordInput" placeholder="Mot de passe" />
+      <button id="loginBtn">Se connecter</button>
+      <div id="loginError" class="status error" style="display: none">
+        Mot de passe incorrect.
+      </div>
+    </div>
+
+    <div class="container" id="adminForm">
       <h1>📝 Panneau d'administration – Cercle d'Action Légitimiste</h1>
       <div class="note">
-        ⚠️ Ce formulaire vous permet de modifier tous les textes du site. Une
-        fois les modifications faites, cliquez sur
+        ⚠️ Ce formulaire permet de modifier tous les textes du site. Une fois
+        les modifications faites, cliquez sur
         <strong>Télécharger le fichier JSON</strong>, puis remplacez l'ancien
-        fichier <code>data/site-content.json</code> sur votre serveur (via FTP
-        ou l'interface de votre hébergeur). Les modifications apparaîtront
+        fichier <code>data/site-content.json</code> sur votre serveur (via
+        GitHub, FTP ou l'interface Netlify). Les modifications apparaîtront
         immédiatement.
       </div>
 
-      <form id="adminForm">
-        <!-- Accueil -->
+      <form id="adminFormFields">
+        <!-- ACCUEIL -->
         <h2>🏠 Page d'accueil</h2>
         <label>Titre principal :</label
         ><input type="text" id="accueil_hero_title" />
@@ -146,7 +167,7 @@
         <label>Compteur 4 valeur :</label
         ><input type="number" id="accueil_counter4_value" />
 
-        <!-- Mouvement -->
+        <!-- MOUVEMENT -->
         <h2>📖 Page Le Mouvement</h2>
         <label>Histoire titre :</label
         ><input type="text" id="mouvement_histoire_titre" />
@@ -172,12 +193,12 @@
         ><textarea id="mouvement_pilier4_texte"></textarea>
         <label>Antennes texte principal :</label
         ><textarea id="mouvement_antennes_texte"></textarea>
-        <label>Antennes commentaire :</label
+        <label>Antennes commentaire (HTML autorisé) :</label
         ><textarea id="mouvement_antennes_commentaire"></textarea>
         <label>Antennes liste villes :</label
         ><textarea id="mouvement_antennes_liste_villes"></textarea>
 
-        <!-- Soutenir -->
+        <!-- SOUTENIR -->
         <h2>💰 Page Nous soutenir</h2>
         <label>Intro titre :</label
         ><input type="text" id="soutenir_intro_titre" />
@@ -213,7 +234,7 @@
         <label>Bon à savoir paragraphe 5 :</label
         ><textarea id="soutenir_bonasavoir_paragraphe5"></textarea>
 
-        <!-- Famille royale (version simplifiée) -->
+        <!-- FAMILLE ROYALE -->
         <h2>👑 Page Famille royale</h2>
         <label>Hero titre :</label
         ><input type="text" id="famille_royale_hero_title" />
@@ -256,61 +277,12 @@
         <label>Légitimité paragraphe 2 :</label
         ><textarea id="famille_royale_legitimite_paragraphe2"></textarea>
 
-        <!-- Mentions légales (simplifié) -->
-        <h2>⚖️ Mentions légales</h2>
-        <label>Éditeur texte :</label
-        ><textarea id="mentions_legales_editeur_texte"></textarea>
-        <label>Hébergement texte :</label
-        ><textarea id="mentions_legales_hebergement_texte"></textarea>
-        <label>Propriété intellectuelle texte :</label
-        ><textarea id="mentions_legales_propriete_texte"></textarea>
-        <label>Responsabilité texte :</label
-        ><textarea id="mentions_legales_responsabilite_texte"></textarea>
-
-        <!-- Confidentialité (simplifié) -->
-        <h2>🔒 Confidentialité</h2>
-        <label>Collecte texte :</label
-        ><textarea id="confidentialite_collecte_texte"></textarea>
-        <label>Utilisation texte :</label
-        ><textarea id="confidentialite_utilisation_texte"></textarea>
-        <label>Partage texte :</label
-        ><textarea id="confidentialite_partage_texte"></textarea>
-        <label>Durée texte :</label
-        ><textarea id="confidentialite_duree_texte"></textarea>
-        <label>Vos droits texte :</label
-        ><textarea id="confidentialite_droits_texte"></textarea>
-        <label>Sécurité texte :</label
-        ><textarea id="confidentialite_securite_texte"></textarea>
-
-        <!-- CGU -->
-        <h2>📜 CGU</h2>
-        <label>Objet :</label><textarea id="cgu_objet_texte"></textarea>
-        <label>Acceptation :</label
-        ><textarea id="cgu_acceptation_texte"></textarea>
-        <label>Contenu :</label><textarea id="cgu_contenu_texte"></textarea>
-        <label>Propriété intellectuelle :</label
-        ><textarea id="cgu_propriete_texte"></textarea>
-        <label>Liens externes :</label
-        ><textarea id="cgu_liens_texte"></textarea> <label>Modification :</label
-        ><textarea id="cgu_modification_texte"></textarea>
-        <label>Droit applicable :</label
-        ><textarea id="cgu_droit_texte"></textarea>
-
-        <!-- Cookies -->
-        <h2>🍪 Cookies</h2>
-        <label>Définition :</label
-        ><textarea id="cookies_definition_texte"></textarea>
-        <label>Utilisation :</label
-        ><textarea id="cookies_utilisation_texte"></textarea>
-        <label>Consentement :</label
-        ><textarea id="cookies_consentement_texte"></textarea>
-        <label>Gestion :</label><textarea id="cookies_gestion_texte"></textarea>
-
-        <!-- Footer -->
+        <!-- FOOTER -->
         <h2>📌 Footer</h2>
         <label>Description association :</label
         ><textarea id="footer_association_description"></textarea>
-        <label>Email :</label><input type="email" id="footer_contact_email" />
+        <label>Email contact :</label
+        ><input type="email" id="footer_contact_email" />
 
         <hr />
         <button type="button" id="downloadBtn">
@@ -321,35 +293,195 @@
     </div>
 
     <script>
-      // Charger le fichier JSON existant (si présent)
-      fetch("/data/site-content.json")
-        .then((res) => (res.ok ? res.json() : null))
-        .then((data) => {
-          if (data) {
-            // Remplir tous les champs récursivement
-            function fillFields(obj, prefix = "") {
-              for (let key in obj) {
-                const fieldId = prefix + key;
-                const input = document.getElementById(fieldId);
-                if (input && obj[key] !== undefined) {
-                  input.value = obj[key];
-                } else if (typeof obj[key] === "object") {
-                  fillFields(obj[key], key + "_");
-                }
-              }
-            }
-            fillFields(data);
-          }
-        })
-        .catch((err) =>
-          console.log("Aucun fichier existant, valeurs par défaut."),
-        );
+      // ==================== MOT DE PASSE ====================
+      // Changez "votre_mot_de_passe" par le mot de passe que vous souhaitez
+      const SECRET_PASSWORD = "PZBC628zbcz@9k";
 
+      // Gestion de la connexion
+      const loginBox = document.getElementById("loginBox");
+      const adminFormDiv = document.getElementById("adminForm");
+      const passwordInput = document.getElementById("passwordInput");
+      const loginBtn = document.getElementById("loginBtn");
+      const loginError = document.getElementById("loginError");
+
+      function checkPassword() {
+        if (passwordInput.value === SECRET_PASSWORD) {
+          loginBox.style.display = "none";
+          adminFormDiv.style.display = "block";
+          loadAndFillForm();
+        } else {
+          loginError.style.display = "block";
+          setTimeout(() => {
+            loginError.style.display = "none";
+          }, 3000);
+        }
+      }
+
+      loginBtn.addEventListener("click", checkPassword);
+      passwordInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") checkPassword();
+      });
+
+      // ==================== VALEURS PAR DÉFAUT (celles de votre site actuel) ====================
+      const defaultContent = {
+        accueil: {
+          hero_title: "CERCLE D'ACTION LÉGITIMISTE",
+          hero_subtitle: "Pour Dieu, la Patrie et le Roi",
+          cta_title: "LA RESTAURATION NE SE FERA PAS SANS VOUS",
+          cta_text: "Votre soutien est essentiel, la France a besoin de vous.",
+          highlight1_title: "UNE CAUSE JUSTE",
+          highlight1_text:
+            "La légitimité royale, seule garante de la pérennité de la France.",
+          highlight2_title: "DE L'ACTION CONCRÈTE",
+          highlight2_text:
+            "Terrain, cohésion, spiritualité : nous agissons aux quatre coins du pays.",
+          highlight3_title: "UNE VERITABLE FORMATION",
+          highlight3_text:
+            "Nous formons nos membres à la Doctrine sociale de l'Eglise et à la Doctrine légitimiste.",
+          counter1_label: "Antennes",
+          counter1_value: 22,
+          counter2_label: "Adhérents",
+          counter2_value: 1000,
+          counter3_label: "Actions par an",
+          counter3_value: 100,
+          counter4_label: "Années d'existence",
+          counter4_value: 8,
+        },
+        mouvement: {
+          histoire_titre: "NOTRE HISTOIRE",
+          histoire_texte:
+            "Le Cercle d'Action Légitimiste a été fondé le 6 février 2018 dans le Bourbonnais, sous le patronage de Saint Mayeul et Saint Odilon. Né du constat que le royalisme devait sortir de la simple nostalgie pour s'engager dans une action concrète, le Cercle s'est implanté petit à petit dans toute la France. Depuis notre création, nous avons organisé plus de 100 conférences, propagé nos idées à de nombreuses reprises sur le terrain, et rassemblé des milliers de sympathisants au légitimisme.",
+          but_titre: "NOTRE BUT",
+          but_texte:
+            "Notre objectif est le rétablissement de la monarchie traditionnelle avec un pouvoir fort et décentralisée, en la personne de Louis XX, duc d'Anjou, chef de la maison de Bourbon. Nous défendons le bien commun, l'enracinement local, la fidélité aux Lois Fondamentales du Royaume, et une conception organique du Royaume respectueuse des personnes et des communautés naturelles. Nous souhaitons retrouver la France catholique, royale et fière de son histoire millénaire.",
+          pilier1_titre: "FORMATION",
+          pilier1_texte:
+            "Conférences, cercles de lecture, journées de formation, chaine youtube et journal digital.",
+          pilier2_titre: "TERRAIN",
+          pilier2_texte:
+            "Affichages, tractages, actions banderoles, opération drapeau blanc, participation à des rassemblements.",
+          pilier3_titre: "COHÉSION",
+          pilier3_texte:
+            "Randonnées, soirées de camaraderie, repas conviviaux, entrainements sportifs, visites, débats.",
+          pilier4_titre: "SPIRITUALITÉ",
+          pilier4_texte:
+            "Pèlerinages, messes, cérémonies, chapelets, maraudes, participation à des processions catholiques.",
+          antennes_texte:
+            "Le Cercle d’action légitimiste s’organise en structures adaptées aux réalités du terrain : en milieu urbain, des sections locales rassemblent les jeunes de 18 à 30 ans à l’échelle des agglomérations ; dans les territoires moins densément peuplés, des délégations permettent aux membres de cette même tranche d’âge de s’engager sur un périmètre plus étendu ; enfin, des délégations d’étude, organisées à l’échelle provinciale, accueillent des membres plus expérimentés désireux de contribuer par la réflexion et la transmission.",
+          antennes_commentaire:
+            "Comment agir dans une antenne ? Contactez-nous via notre compte Instagram en précisant votre ville. Nous vous mettrons en relation avec l'antenne locale. Aucune antenne proche de chez vous ? Procédez à l'adhésion puis contactez-nous en message privé sur notre compte Instagram.",
+          antennes_liste_villes:
+            "Nous sommes présents avec des antennes militantes à Lille, Amiens, Rouen, Vernon, Nancy, Paris, Vannes, Dijon, Besançon, Clermont-Ferrand, Saint-Étienne, Chambéry et Grenoble, ainsi que dans le Morbihan, la Saintonge et la Provence. Nos délégations études couvrent le Valois, le Mantois, le Dauphiné, le Languedoc Oriental et le Japon.",
+        },
+        soutenir: {
+          intro_titre: "POURQUOI ADHÉRER ?",
+          intro_texte:
+            "Devenir membre du Cercle d'Action Légitimiste, c'est faire le premier pas pour rejoindre une communauté de royalistes actifs. L'adhésion marque votre engagement concret au service de la cause royaliste et de l'avenir de la France. Chaque adhérent contribue, à sa mesure, au renforcement et au rayonnement du légitimisme.",
+          boutique_titre: "BOUTIQUE REDBUBBLE",
+          boutique_texte:
+            "T-shirts, sweats, mugs, coques de téléphone, cahiers, magnets... Affichez fièrement vos couleurs !",
+          autocollants_titre: "AUTOCOLLANTS",
+          autocollants_texte:
+            "Commandez nos autocollants pour agir concrètement. Disponibles en lot de 30, livraison dans toute la France.",
+          journal_titre: "VEXILLA GALLIAE",
+          journal_texte:
+            "Le journal digital du Cercle d'Action Légitimiste 100% gratuit. Actualités, royauté, politique, histoire,...",
+          don_intro_titre: "POURQUOI DONNER ?",
+          don_intro_texte:
+            "Votre don, même modeste, est essentiel. Il nous permet de financer nos actions : impression de tracts et d'affiches, organisation de gros évènements, locations de salles, déplacements,... Faites un don pour que la France retrouve son Roi !",
+          don_titre: "JE FAIS UN DON",
+          bonasavoir_titre: "BON A SAVOIR",
+          bonasavoir_paragraphe1:
+            "Les personnes morales (entreprises, associations) à l’exception des partis ou groupements politiques, ne peuvent contribuer au financement du Cercle d’Action Légitimiste, ni en consentant des dons, sous quelque forme que ce soit, ni en lui fournissant des biens, services ou autres avantages directs ou indirects à des prix inférieurs à ceux qui sont habituellement pratiqués.",
+          bonasavoir_paragraphe2:
+            "Le Cercle d’Action Légitimiste est une association déclarée conformément à la loi du 1er juillet 1901. Elle n’est pas reconnue d’utilité publique. Par conséquent, les dons qui lui sont adressés n’ouvrent droit à aucune déduction fiscale.",
+          bonasavoir_paragraphe3:
+            "Les informations que vous nous communiquez sont nécessaires à la gestion de vos adhésions, dons, et de nos relations. Elles sont exclusivement réservées à l’usage du Cercle d’Action Légitimiste et, en retournant ce formulaire, vous l’autorisez à utiliser vos données pour la gestion associative et les opérations de communication en lien avec son objet. Vos informations ne pourront être communiquées qu’à des cocontractants qui, en leur qualité de sous-traitants, n’agiront que sur notre instruction et seront soumis à une stricte obligation de confidentialité.",
+          bonasavoir_paragraphe4:
+            "Conformément à la loi « Informatique et Libertés » et au RGPD, vous bénéficiez des droits d’accès, de rectification, de suppression, de limitation au traitement, de portabilité et d’opposition. Vous avez également le droit de vous opposer à ce que vous soyez l’objet d’une décision automatisée. Vous pouvez aussi laisser des directives auprès de vos ayants droit afin de décider du sort de vos données après votre décès.",
+          bonasavoir_paragraphe5:
+            "Vous pouvez exercer vos droits en nous écrivant à l’adresse suivante : legitimiste@protonmail.com",
+        },
+        famille_royale: {
+          hero_title: "LA FAMILLE ROYALE",
+          hero_subtitle:
+            "S.M.T.C. Louis XX, Roi de France et de Navarre, et sa famille",
+          bio_titre: "SA MAJESTÉ TRES CHRÉTIENNE LOUIS XX",
+          bio_paragraphe1:
+            "Louis Alphonse de Bourbon, Duc d'Anjou, est né le 25 avril 1974 à Madrid. Il est l'aîné des Capétiens, descendant de Louis XIV conformément aux lois fondamentales du Royaume de France, chef de la maison de Bourbon. Il est le seul roi légitime de France depuis la mort de son père Alphonse de Bourbon en 1989, et porte le nom de règne Louis XX.",
+          bio_paragraphe2:
+            "Il est le fils cadet d'Alphonse II, Duc d'Anjou et de Cadix, et de María del Carmen Martínez-Bordiú y Franco. Père de 4 enfants, Louis de Bourbon, Duc d’Anjou, est le successeur des rois de France et le chef de la Maison de Bourbon. Il conjugue engagements culturels et sociaux en France avec une carrière d’entrepreneur international dans les domaines du sport, de la culture et de l’environnement.",
+          bio_paragraphe3:
+            "Louis XX défend ardemment de la monarchie traditionnelle, catholique et héréditaire. Par ses prises de parole sur les grands enjeux de société, le Duc d’Anjou exerce un rôle de veille et de discernement, attentif aux réalités sociales et éthiques de son temps. Il intervient régulièrement dans différents médias/magazines en ligne pour défendre l'héritage culturel et spirituel de la France, fruit de plus d’un millénaire d’histoire.",
+          citation_texte:
+            "Ce n’est plus seulement le millénaire capétien, qu’il faut commémorer, mais ne faudrait-il pas préparer le renouveau capétien ?",
+          citation_auteur: "Louis XX, 30 juillet 2025",
+          enfants_titre: "LES ENFANTS DE FRANCE",
+          enfant1_nom: "S.A.R. LA PRINCESSE EUGÉNIE",
+          enfant1_desc:
+            'Née le 5 mars 2007 à Caracas. Elle est l\'aînée des filles non mariées du Roi. Fille de France, elle porte le titre de "Madame".',
+          enfant2_nom: "S.A.R. LE PRINCE LOUIS",
+          enfant2_desc:
+            "Né le 28 mai 2010 à Caracas. Il est le fils aîné et héritier du trône, soit l'actuel dauphin de France. Il porte le titre de « duc de Bourgogne ».",
+          enfant3_nom: "S.A.R. LE PRINCE ALPHONSE",
+          enfant3_desc:
+            "Né le 28 mai 2010 également, jumeau du précédent. Ils sont tous deux baptisés le 5 septembre 2010 au Vatican. Il porte le titre de « duc de Berry ».",
+          enfant4_nom: "S.A.R. LE PRINCE HENRI",
+          enfant4_desc:
+            "Né le 1er février 2019. Il est le dernier des enfants royaux. Il porte le titre de « duc de Touraine ».",
+          legitimite_titre: "LA LÉGITIMITÉ DE LOUIS XX",
+          legitimite_paragraphe1:
+            "La couronne de France se transmet selon les lois fondamentales du royaume, dont la loi salique (exclusion des femmes et de leur descendance) et l'hérédité masculine par ordre de primogéniture. La branche d'Artois de la maison capétienne des Bourbons s'est éteinte en 1883 avec la mort de Son Altesse Royale le comte de Chambord. La Couronne de France est alors passée à la branche de Bourbon-Anjou issue de Philippe V, petit-fils de Louis XIV. Les renonciations de Philippe V à ses droits sont nulles parce que la Couronne est indisponible (Loi Fondamentale du Royaume). La branche aînée de la maison de Bourbon est représentée aujourd'hui par Louis XX, descendant direct de Louis XIV par Philippe V.",
+          legitimite_paragraphe2:
+            "Mgr. Louis de Bourbon, Duc d'Anjou, est donc l'unique héritier légitime du trône de France. Il possède le titre de « Roi de France et de Navarre ». Son engagement pour la France est total, comme en témoignent ses nombreuses déclarations et sa présence assidue sur le terrain. Il unifie tous les français et est le garant de la continuité monarchique.",
+        },
+        footer: {
+          association_description:
+            "Association loi 1901 – Pour le rétablissement de la monarchie légitime en France, en la personne de Louis XX.",
+          contact_email: "legitimiste@protonmail.com",
+        },
+      };
+
+      // ==================== CHARGEMENT ET REMPLISSAGE ====================
+      function fillFormWithData(data) {
+        function fill(obj, prefix = "") {
+          for (let key in obj) {
+            const fieldId = prefix + key;
+            const input = document.getElementById(fieldId);
+            if (input && obj[key] !== undefined && obj[key] !== null) {
+              input.value = obj[key];
+            } else if (typeof obj[key] === "object" && obj[key] !== null) {
+              fill(obj[key], key + "_");
+            }
+          }
+        }
+        fill(data);
+      }
+
+      function loadAndFillForm() {
+        fetch("/data/site-content.json")
+          .then((res) => (res.ok ? res.json() : null))
+          .then((data) => {
+            if (data) {
+              fillFormWithData(data);
+            } else {
+              fillFormWithData(defaultContent);
+            }
+          })
+          .catch((err) => {
+            console.error(
+              "Erreur chargement JSON, utilisation des valeurs par défaut",
+              err,
+            );
+            fillFormWithData(defaultContent);
+          });
+      }
+
+      // ==================== TÉLÉCHARGEMENT ====================
       document.getElementById("downloadBtn").addEventListener("click", () => {
-        // Récupérer toutes les valeurs du formulaire
         const formData = {};
         const inputs = document.querySelectorAll(
-          "#adminForm input, #adminForm textarea",
+          "#adminFormFields input, #adminFormFields textarea",
         );
         inputs.forEach((input) => {
           const id = input.id;
