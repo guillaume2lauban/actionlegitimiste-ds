@@ -1,0 +1,229 @@
+{
+  "accueil": {
+    "hero": {
+      "title": "Titre test cal",
+      "subtitle": "pour dieu la france le roi"
+    },
+    "cta": {
+      "title": "",
+      "text": ""
+    },
+    "highlight1": {
+      "title": "",
+      "text": ""
+    },
+    "highlight2": {
+      "title": "",
+      "text": ""
+    },
+    "highlight3": {
+      "title": "",
+      "text": ""
+    },
+    "counter1": {
+      "label": "",
+      "value": ""
+    },
+    "counter2": {
+      "label": "",
+      "value": ""
+    },
+    "counter3": {
+      "label": "",
+      "value": ""
+    },
+    "counter4": {
+      "label": "",
+      "value": ""
+    }
+  },
+  "mouvement": {
+    "histoire": {
+      "titre": "",
+      "texte": ""
+    },
+    "but": {
+      "titre": "",
+      "texte": ""
+    },
+    "pilier1": {
+      "titre": "",
+      "texte": ""
+    },
+    "pilier2": {
+      "titre": "",
+      "texte": ""
+    },
+    "pilier3": {
+      "titre": "",
+      "texte": ""
+    },
+    "pilier4": {
+      "titre": "",
+      "texte": ""
+    },
+    "antennes": {
+      "texte": "",
+      "commentaire": "",
+      "liste": {
+        "villes": ""
+      }
+    }
+  },
+  "soutenir": {
+    "intro": {
+      "titre": "",
+      "texte": ""
+    },
+    "boutique": {
+      "titre": "",
+      "texte": ""
+    },
+    "autocollants": {
+      "titre": "",
+      "texte": ""
+    },
+    "journal": {
+      "titre": "",
+      "texte": ""
+    },
+    "don": {
+      "intro": {
+        "titre": "",
+        "texte": ""
+      },
+      "titre": ""
+    },
+    "bonasavoir": {
+      "titre": "",
+      "paragraphe1": "",
+      "paragraphe2": "",
+      "paragraphe3": "",
+      "paragraphe4": "",
+      "paragraphe5": ""
+    }
+  },
+  "famille": {
+    "royale": {
+      "hero": {
+        "title": "",
+        "subtitle": ""
+      },
+      "bio": {
+        "titre": "",
+        "paragraphe1": "",
+        "paragraphe2": "",
+        "paragraphe3": ""
+      },
+      "citation": {
+        "texte": "",
+        "auteur": ""
+      },
+      "enfants": {
+        "titre": ""
+      },
+      "enfant1": {
+        "nom": "",
+        "desc": ""
+      },
+      "enfant2": {
+        "nom": "",
+        "desc": ""
+      },
+      "enfant3": {
+        "nom": "",
+        "desc": ""
+      },
+      "enfant4": {
+        "nom": "",
+        "desc": ""
+      },
+      "legitimite": {
+        "titre": "",
+        "paragraphe1": "",
+        "paragraphe2": ""
+      }
+    }
+  },
+  "mentions": {
+    "legales": {
+      "editeur": {
+        "texte": ""
+      },
+      "hebergement": {
+        "texte": ""
+      },
+      "propriete": {
+        "texte": ""
+      },
+      "responsabilite": {
+        "texte": ""
+      }
+    }
+  },
+  "confidentialite": {
+    "collecte": {
+      "texte": ""
+    },
+    "utilisation": {
+      "texte": ""
+    },
+    "partage": {
+      "texte": ""
+    },
+    "duree": {
+      "texte": ""
+    },
+    "droits": {
+      "texte": ""
+    },
+    "securite": {
+      "texte": ""
+    }
+  },
+  "cgu": {
+    "objet": {
+      "texte": ""
+    },
+    "acceptation": {
+      "texte": ""
+    },
+    "contenu": {
+      "texte": ""
+    },
+    "propriete": {
+      "texte": ""
+    },
+    "liens": {
+      "texte": ""
+    },
+    "modification": {
+      "texte": ""
+    },
+    "droit": {
+      "texte": ""
+    }
+  },
+  "cookies": {
+    "definition": {
+      "texte": ""
+    },
+    "utilisation": {
+      "texte": ""
+    },
+    "consentement": {
+      "texte": ""
+    },
+    "gestion": {
+      "texte": ""
+    }
+  },
+  "footer": {
+    "association": {
+      "description": ""
+    },
+    "contact": {
+      "email": ""
+    }
+  }
+}
