@@ -1,0 +1,156 @@
+{
+  "accueil": {
+    "hero": {
+      "title": "CERCLE D'ACTION LÉGITIMISTE",
+      "subtitle": "Pour Dieu, la Patrie et le Roi"
+    },
+    "cta": {
+      "title": "LA RESTAURATION NE SE FERA PAS SANS VOUS",
+      "text": "Votre soutien est essentiel, la France a besoin de vous."
+    },
+    "highlight1": {
+      "title": "UNE CAUSE JUSTE",
+      "text": "La légitimité royale, seule garante de la pérennité de la France."
+    },
+    "highlight2": {
+      "title": "DE L'ACTION CONCRÈTE",
+      "text": "Terrain, cohésion, spiritualité : nous agissons aux quatre coins du pays."
+    },
+    "highlight3": {
+      "title": "UNE VERITABLE FORMATION",
+      "text": "Nous formons nos membres à la Doctrine sociale de l'Eglise et à la Doctrine légitimiste."
+    },
+    "counter1": {
+      "label": "Antennes",
+      "value": "22"
+    },
+    "counter2": {
+      "label": "Adhérents",
+      "value": "1000"
+    },
+    "counter3": {
+      "label": "Actions par an",
+      "value": "100"
+    },
+    "counter4": {
+      "label": "Années d'existence",
+      "value": "8"
+    }
+  },
+  "mouvement": {
+    "histoire": {
+      "titre": "NOTRE HISTOIRE",
+      "texte": "Le Cercle d'Action Légitimiste a été fondé le 6 février 2018 dans le Bourbonnais, sous le patronage de Saint Mayeul et Saint Odilon. Né du constat que le royalisme devait sortir de la simple nostalgie pour s'engager dans une action concrète, le Cercle s'est implanté petit à petit dans toute la France. Depuis notre création, nous avons organisé plus de 100 conférences, propagé nos idées à de nombreuses reprises sur le terrain, et rassemblé des milliers de sympathisants au légitimisme."
+    },
+    "but": {
+      "titre": "NOTRE BUT",
+      "texte": "Notre objectif est le rétablissement de la monarchie traditionnelle avec un pouvoir fort et décentralisée, en la personne de Louis XX, duc d'Anjou, chef de la maison de Bourbon. Nous défendons le bien commun, l'enracinement local, la fidélité aux Lois Fondamentales du Royaume, et une conception organique du Royaume respectueuse des personnes et des communautés naturelles. Nous souhaitons retrouver la France catholique, royale et fière de son histoire millénaire."
+    },
+    "pilier1": {
+      "titre": "FORMATION",
+      "texte": "Conférences, cercles de lecture, journées de formation, chaine youtube et journal digital."
+    },
+    "pilier2": {
+      "titre": "TERRAIN",
+      "texte": "Affichages, tractages, actions banderoles, opération drapeau blanc, participation à des rassemblements."
+    },
+    "pilier3": {
+      "titre": "COHÉSION",
+      "texte": "Randonnées, soirées de camaraderie, repas conviviaux, entrainements sportifs, visites, débats."
+    },
+    "pilier4": {
+      "titre": "SPIRITUALITÉ",
+      "texte": "Pèlerinages, messes, cérémonies, chapelets, maraudes, participation à des processions catholiques."
+    },
+    "antennes": {
+      "texte": "Le Cercle d’action légitimiste s’organise en structures adaptées aux réalités du terrain : en milieu urbain, des sections locales rassemblent les jeunes de 18 à 30 ans à l’échelle des agglomérations ; dans les territoires moins densément peuplés, des délégations permettent aux membres de cette même tranche d’âge de s’engager sur un périmètre plus étendu ; enfin, des délégations d’étude, organisées à l’échelle provinciale, accueillent des membres plus expérimentés désireux de contribuer par la réflexion et la transmission.",
+      "commentaire": "Comment agir dans une antenne ? Contactez-nous via notre compte Instagram en précisant votre ville. Nous vous mettrons en relation avec l'antenne locale. Aucune antenne proche de chez vous ? Procédez à l'adhésion puis contactez-nous en message privé sur notre compte Instagram.",
+      "liste": {
+        "villes": "Nous sommes présents avec des antennes militantes à Lille, Amiens, Rouen, Vernon, Nancy, Paris, Vannes, Dijon, Besançon, Clermont-Ferrand, Saint-Étienne, Chambéry et Grenoble, ainsi que dans le Morbihan, la Saintonge et la Provence. Nos délégations études couvrent le Valois, le Mantois, le Dauphiné, le Languedoc Oriental et le Japon."
+      }
+    }
+  },
+  "soutenir": {
+    "intro": {
+      "titre": "POURQUOI ADHÉRER ?",
+      "texte": "Devenir membre du Cercle d'Action Légitimiste, c'est faire le premier pas pour rejoindre une communauté de royalistes actifs. L'adhésion marque votre engagement concret au service de la cause royaliste et de l'avenir de la France. Chaque adhérent contribue, à sa mesure, au renforcement et au rayonnement du légitimisme."
+    },
+    "boutique": {
+      "titre": "BOUTIQUE REDBUBBLE",
+      "texte": "T-shirts, sweats, mugs, coques de téléphone, cahiers, magnets... Affichez fièrement vos couleurs !"
+    },
+    "autocollants": {
+      "titre": "AUTOCOLLANTS",
+      "texte": "Commandez nos autocollants pour agir concrètement. Disponibles en lot de 30, livraison dans toute la France."
+    },
+    "journal": {
+      "titre": "VEXILLA GALLIAE",
+      "texte": "Le journal digital du Cercle d'Action Légitimiste 100% gratuit. Actualités, royauté, politique, histoire,..."
+    },
+    "don": {
+      "intro": {
+        "titre": "POURQUOI DONNER ?",
+        "texte": "Votre don, même modeste, est essentiel. Il nous permet de financer nos actions : impression de tracts et d'affiches, organisation de gros évènements, locations de salles, déplacements,... Faites un don pour que la France retrouve son Roi !"
+      },
+      "titre": "JE FAIS UN DON"
+    },
+    "bonasavoir": {
+      "titre": "BON A SAVOIR",
+      "paragraphe1": "Les personnes morales (entreprises, associations) à l’exception des partis ou groupements politiques, ne peuvent contribuer au financement du Cercle d’Action Légitimiste, ni en consentant des dons, sous quelque forme que ce soit, ni en lui fournissant des biens, services ou autres avantages directs ou indirects à des prix inférieurs à ceux qui sont habituellement pratiqués.",
+      "paragraphe2": "Le Cercle d’Action Légitimiste est une association déclarée conformément à la loi du 1er juillet 1901. Elle n’est pas reconnue d’utilité publique. Par conséquent, les dons qui lui sont adressés n’ouvrent droit à aucune déduction fiscale.",
+      "paragraphe3": "Les informations que vous nous communiquez sont nécessaires à la gestion de vos adhésions, dons, et de nos relations. Elles sont exclusivement réservées à l’usage du Cercle d’Action Légitimiste et, en retournant ce formulaire, vous l’autorisez à utiliser vos données pour la gestion associative et les opérations de communication en lien avec son objet. Vos informations ne pourront être communiquées qu’à des cocontractants qui, en leur qualité de sous-traitants, n’agiront que sur notre instruction et seront soumis à une stricte obligation de confidentialité.",
+      "paragraphe4": "Conformément à la loi « Informatique et Libertés » et au RGPD, vous bénéficiez des droits d’accès, de rectification, de suppression, de limitation au traitement, de portabilité et d’opposition. Vous avez également le droit de vous opposer à ce que vous soyez l’objet d’une décision automatisée. Vous pouvez aussi laisser des directives auprès de vos ayants droit afin de décider du sort de vos données après votre décès.",
+      "paragraphe5": "Vous pouvez exercer vos droits en nous écrivant à l’adresse suivante : legitimiste@protonmail.com"
+    }
+  },
+  "famille": {
+    "royale": {
+      "hero": {
+        "title": "LA FAMILLE ROYALE",
+        "subtitle": "S.M.T.C. Louis XX, Roi de France et de Navarre, et sa famille"
+      },
+      "bio": {
+        "titre": "SA MAJESTÉ TRES CHRÉTIENNE LOUIS XX",
+        "paragraphe1": "Louis Alphonse de Bourbon, Duc d'Anjou, est né le 25 avril 1974 à Madrid. Il est l'aîné des Capétiens, descendant de Louis XIV conformément aux lois fondamentales du Royaume de France, chef de la maison de Bourbon. Il est le seul roi légitime de France depuis la mort de son père Alphonse de Bourbon en 1989, et porte le nom de règne Louis XX.",
+        "paragraphe2": "Il est le fils cadet d'Alphonse II, Duc d'Anjou et de Cadix, et de María del Carmen Martínez-Bordiú y Franco. Père de 4 enfants, Louis de Bourbon, Duc d’Anjou, est le successeur des rois de France et le chef de la Maison de Bourbon. Il conjugue engagements culturels et sociaux en France avec une carrière d’entrepreneur international dans les domaines du sport, de la culture et de l’environnement.",
+        "paragraphe3": "Louis XX défend ardemment de la monarchie traditionnelle, catholique et héréditaire. Par ses prises de parole sur les grands enjeux de société, le Duc d’Anjou exerce un rôle de veille et de discernement, attentif aux réalités sociales et éthiques de son temps. Il intervient régulièrement dans différents médias/magazines en ligne pour défendre l'héritage culturel et spirituel de la France, fruit de plus d’un millénaire d’histoire."
+      },
+      "citation": {
+        "texte": "Ce n’est plus seulement le millénaire capétien, qu’il faut commémorer, mais ne faudrait-il pas préparer le renouveau capétien ?",
+        "auteur": "Louis XX, 30 juillet 2025"
+      },
+      "enfants": {
+        "titre": "LES ENFANTS DE FRANCE"
+      },
+      "enfant1": {
+        "nom": "S.A.R. LA PRINCESSE EUGÉNIE",
+        "desc": "Née le 5 mars 2007 à Caracas. Elle est l'aînée des filles non mariées du Roi. Fille de France, elle porte le titre de \"Madame\"."
+      },
+      "enfant2": {
+        "nom": "S.A.R. LE PRINCE LOUIS",
+        "desc": "Né le 28 mai 2010 à Caracas. Il est le fils aîné et héritier du trône, soit l'actuel dauphin de France. Il porte le titre de « duc de Bourgogne »."
+      },
+      "enfant3": {
+        "nom": "S.A.R. LE PRINCE ALPHONSE",
+        "desc": "Né le 28 mai 2010 également, jumeau du précédent. Ils sont tous deux baptisés le 5 septembre 2010 au Vatican. Il porte le titre de « duc de Berry »."
+      },
+      "enfant4": {
+        "nom": "S.A.R. LE PRINCE HENRI",
+        "desc": "Né le 1er février 2019. Il est le dernier des enfants royaux. Il porte le titre de « duc de Touraine »."
+      },
+      "legitimite": {
+        "titre": "LA LÉGITIMITÉ DE LOUIS XX",
+        "paragraphe1": "La couronne de France se transmet selon les lois fondamentales du royaume, dont la loi salique (exclusion des femmes et de leur descendance) et l'hérédité masculine par ordre de primogéniture. La branche d'Artois de la maison capétienne des Bourbons s'est éteinte en 1883 avec la mort de Son Altesse Royale le comte de Chambord. La Couronne de France est alors passée à la branche de Bourbon-Anjou issue de Philippe V, petit-fils de Louis XIV. Les renonciations de Philippe V à ses droits sont nulles parce que la Couronne est indisponible (Loi Fondamentale du Royaume). La branche aînée de la maison de Bourbon est représentée aujourd'hui par Louis XX, descendant direct de Louis XIV par Philippe V.",
+        "paragraphe2": "Mgr. Louis de Bourbon, Duc d'Anjou, est donc l'unique héritier légitime du trône de France. Il possède le titre de « Roi de France et de Navarre ». Son engagement pour la France est total, comme en témoignent ses nombreuses déclarations et sa présence assidue sur le terrain. Il unifie tous les français et est le garant de la continuité monarchique."
+      }
+    }
+  },
+  "footer": {
+    "association": {
+      "description": "Association loi 1901 – Pour le rétablissement de la monarchie légitime en France, en la personne de Louis XX."
+    },
+    "contact": {
+      "email": "legitimiste@protonmail.com"
+    }
+  }
+}
